@@ -1,0 +1,14 @@
+{
+  "name": "henhouse-spatial",
+  "version": "0.1.0",
+  "description": "Parametric design and simulation for the Henhouse ADU platform",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test simulation/tests/**/*.test.js",
+    "eval": "node eval.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

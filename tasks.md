@@ -1,5 +1,19 @@
 # Current Tasks
 
+## ▶ Resume Here (last updated 2026-06-09)
+
+**Next build: B005 — HVAC + ERV sizing.** B001–B004 + decision D001 are done and committed (`f3f34b3`).
+
+**Key context for B005/B006** (read `contracts/chassis-contract.md` first):
+- **Weight is the tracked binding budget.** D001 resolved the weight fork: aluminum frame + FRP skins → **~5,750 lb cartridge allowance** at 14K no-CDL GVWR. HVAC (B005) and electrical (B006) equipment weights draw down this allowance — track them.
+- Chassis envelope is locked: 6½" GPS-core FRP-skinned SIP walls (R-28), 8¼" roof, ~6'8" interior design width, ~10'1"–10'7" interior height.
+
+**Two open items parked** (not blocking, but resolve before fleet build):
+1. **Tow vehicle** — non-CDL now needs a truck rated ≤~12,000 lb GVWR; many 1-tons exceed that. The truck choice, not the build, is the binding no-CDL constraint.
+2. **FRP fire rating** — interior thermal/ignition barrier required for occupied commercial use (regulatory check).
+
+---
+
 ## Active Epic: E01-chassis-contract — Platform Specification
 
 - [x] **B001** — Project setup: masterplan, CLAUDE.md, implementation plan, contracts, project structure

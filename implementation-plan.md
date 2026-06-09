@@ -2,34 +2,34 @@
 
 ## Current Phase: Phase 0/1 — Discovery + Architecture
 
-Defining the chassis constraints, fit-out interface, and spatial contracts before building any simulation code. The platform-first model means the chassis design must be configuration-agnostic — designed around interface contracts, not around any specific fit-out.
+Defining the chassis constraints, cartridge interface, and spatial contracts before building any simulation code. The platform-first model means the chassis design must be configuration-agnostic — designed around interface contracts, not around any specific cartridge.
 
 ## Epic Map
 
 ### E01-chassis-contract — Platform Specification
 **Phase**: Architecture (current)
-**What**: Define the chassis as a spatial contract — exterior envelope, structural grid, thermal performance targets, electrical capacity, HVAC system, and the fit-out interface (mounting points, connection points, clear dimensions). This is the "API" of the physical platform.
+**What**: Define the chassis as a spatial contract — exterior envelope, SIP wall assembly, structural grid, thermal performance targets, electrical capacity (50A shore power + future battery expansion), ERV + HVAC system, deployment modes (trailer-locked + crane-off via ISO castings), and the cartridge interface. This is the "API" of the physical platform.
 **Depends on**: Nothing. This is the foundation.
-**Consumers**: Every fit-out config, the simulation engine, Container OS (hardware map).
+**Consumers**: Every cartridge config, the simulation engine, Container OS (hardware map).
 
-### E02-time-machine-config — Time Machine Fit-Out Specification
+### E02-content-node-config — Content Node Cartridge Specification
 **Phase**: Architecture (current)
-**What**: Define Time Machine's spatial requirements as a fit-out configuration that consumes the chassis interface. Zone allocation, LED panel layout, acoustic treatment, electrical loads, HVAC demands, audience capacity validation. This is the most demanding config and stress-tests the chassis design.
+**What**: Define Content Node (mobile studio) as the most demanding cartridge. Zone allocation, LED panel layout, acoustic decoupling, electrical loads, HVAC demands, audience capacity validation. This stress-tests the chassis design.
 **Depends on**: E01 (needs chassis interface to validate against)
 
 ### E03-parametric-model — Chassis Simulation Engine
 **Phase**: Build
-**What**: Parametric 3D model of the chassis. Change inputs (wall thickness, length, insulation type) and see cascading effects on interior dimensions, weight, R-value, cost estimates. Browser-based using Three.js.
+**What**: Parametric 3D model of the chassis. Change inputs (SIP thickness, length) and see cascading effects on interior dimensions, weight, R-value, cost estimates. Browser-based using Three.js.
 **Depends on**: E01 (needs dimensional constraints and structural spec)
 
-### E04-fitout-placement — Configuration Placement Engine
+### E04-cartridge-placement — Configuration Placement Engine
 **Phase**: Build
-**What**: Place fit-out components inside the parametric chassis. Validate clearances, weight distribution, electrical load, HVAC capacity. Detects conflicts (LED panel doesn't fit at current wall thickness, electrical load exceeds panel capacity).
-**Depends on**: E01 (chassis model), E02+ (fit-out configs), E03 (simulation engine)
+**What**: Place cartridge components inside the parametric chassis. Validate clearances, weight distribution, electrical load, HVAC capacity. Detects conflicts (LED panel doesn't fit at current wall thickness, electrical load exceeds panel capacity).
+**Depends on**: E01 (chassis model), E02+ (cartridge configs), E03 (simulation engine)
 
 ### E05-constraint-eval — Spatial Contract Validation
 **Phase**: Build
-**What**: Automated checks that validate a fit-out configuration against the chassis contract. "Does this configuration fit? Does it exceed electrical capacity? Does the HVAC handle the thermal load? Is the weight towable?" These are the spatial evals.
+**What**: Automated checks that validate a cartridge configuration against the chassis contract. "Does this configuration fit? Does it exceed electrical capacity? Does the HVAC handle the thermal load? Is the weight towable?" These are the spatial evals.
 **Depends on**: E01, E03, E04
 
 ### E06-visualization — Interactive 3D Viewer
@@ -39,25 +39,35 @@ Defining the chassis constraints, fit-out interface, and spatial contracts befor
 
 ### E07-system-manifest — Container OS Export
 **Phase**: Build
-**What**: Export the physical system inventory (HVAC zones, electrical circuits, lighting fixtures, sensor locations) from the spatial model in a format Container OS can import as its hardware map. This bridges the spatial and software projects.
+**What**: Export the physical system inventory (HVAC zones, ERV config, electrical circuits, lighting fixtures, sensor locations) from the spatial model in a format Container OS can import as its hardware map. This bridges the spatial and software projects.
 **Depends on**: E01, E04, Container OS protocol spec (from henhouse-container-os project)
 
-### E08-adu-config — Living Unit Fit-Out Specification
+### E08-sanctuary-config — Sanctuary Cartridge Specification
 **Phase**: Future
-**What**: Define the living unit fit-out configuration. Simpler than Time Machine — validates that a livable space works within the chassis. Includes plumbing considerations.
+**What**: Define the Sanctuary (green room) cartridge. Simpler than Content Node — validates that a luxury recovery/prep space works within the chassis.
+**Depends on**: E01
+
+### E09-sportsbook-config — Pop-Up Sportsbook Cartridge Specification
+**Phase**: Future
+**What**: Define the Pop-Up Sportsbook (event bar) cartridge. Includes deferred gull-wing wall design.
+**Depends on**: E01
+
+### E10-lounge-config — Heavy-Air Lounge Cartridge Specification
+**Phase**: Future
+**What**: Define the Heavy-Air Lounge (cigar club) cartridge. Negative-pressure HVAC design, HEPA/carbon filtration integration.
 **Depends on**: E01
 
 ## Dependency Graph
 
 ```
-E01-chassis-contract ──────┬──────────────────────────┐
-        │                  │                           │
-        ▼                  ▼                           ▼
-E02-time-machine    E03-parametric-model        E08-adu-config
+E01-chassis-contract ──────┬──────────────────────────┐──────────┐──────────┐
+        │                  │                           │          │          │
+        ▼                  ▼                           ▼          ▼          ▼
+E02-content-node    E03-parametric-model        E08-sanctuary E09-sports E10-lounge
         │                  │
         └──────┬───────────┘
                ▼
-        E04-fitout-placement
+        E04-cartridge-placement
                │
         ┌──────┼──────┐
         ▼      ▼      ▼
@@ -71,27 +81,27 @@ E02-time-machine    E03-parametric-model        E08-adu-config
 E01-chassis-contract
   B001 — Project setup: masterplan, CLAUDE.md, implementation plan, project structure
   B002 — Exterior envelope spec: transport-legal dimensions, trailer frame constraints
-  B003 — Wall assembly options: document 2-3 candidate assemblies with R-value, weight, width impact
-  B004 — Structural grid: bay spacing, load paths, mounting point capacity
-  B005 — HVAC system spec: capacity sizing (sized for Time Machine worst case), zone layout, duct routing
-  B006 — Electrical system spec: shore power, panel sizing, circuit allocation, connection points
-  B007 — Fit-out interface contract: the complete "API" — what the chassis provides to any configuration
+  B003 — SIP wall assembly: panel options (core material, thickness, skins), R-value, weight, width impact
+  B004 — Structural grid: bay spacing (SIP joint layout), load paths, mounting point capacity
+  B005 — HVAC + ERV system spec: enthalpy wheel ERV, cooling capacity (sized for Content Node), zone layout
+  B006 — Electrical system spec: 50A shore power, panel sizing, circuit allocation, future battery expansion
+  B007 — Cartridge interface contract: the complete "API" — what the chassis provides to any configuration
 
-E02-time-machine-config
-  B008 — Zone allocation: entry, chamber, control, mechanical — dimensions and adjacency
+E02-content-node-config
+  B008 — Zone allocation: entry, studio/chamber, control, mechanical — dimensions and adjacency
   B009 — LED panel layout: panel sizing, mounting spec, clearances, within 6'8" width
-  B010 — Acoustic treatment spec: isolation requirements, material options, thickness impact on clear width
+  B010 — Acoustic treatment spec: room-within-a-room decoupling, isolation requirements, thickness impact
   B011 — Electrical and thermal load calc: LED + compute + audio + audience heat
-  B012 — Experience layout options: corridor vs. theater vs. pod — dimensional validation for each
+  B012 — Experience/studio layout options: broadcast, immersive, hybrid — dimensional validation
 ```
 
 ### Phase 3 Builds (Implementation — Next)
 ```
 E03-parametric-model
-  B013 — Base chassis renderer: Three.js scene with parametric exterior box
-  B014 — Wall assembly toggle: switch between assembly options, see interior width change
+  B013 — Base chassis renderer: Three.js scene with parametric exterior box (SIP panels)
+  B014 — Wall assembly toggle: switch between SIP thicknesses, see interior width change
   B015 — Weight calculator: sum structural + envelope + system weights, compare to tow rating
-  B016 — Thermal calculator: R-value computation from assembly, comparison to passive house targets
+  B016 — Thermal calculator: R-value computation from SIP assembly, passive house target comparison
 ```
 
 ## Technology Decisions
@@ -108,30 +118,31 @@ E03-parametric-model
 ## Open Design Questions
 
 ### Structural
-- [ ] Wall assembly: wood stud + mineral wool vs. SIPs vs. composite panels?
-- [ ] Is weight or thickness the actual binding constraint on movability?
+- [ ] SIP core material: EPS vs polyisocyanurate vs XPS?
+- [ ] SIP thickness: 4" vs 4.5" vs 6"? (R-value vs interior width tradeoff)
+- [ ] SIP skin material: OSB (standard) vs metal vs fiberglass?
 - [ ] Roof structure: flat, low-slope, or peaked? (Affects interior height, drainage, aesthetics)
-- [ ] Floor assembly: trailer deck integration, insulation below floor?
-- [ ] Structural bay spacing: 16" OC, 24" OC, or non-standard?
+- [ ] Floor assembly: integration with trailer deck, insulation below floor?
 
 ### Systems
-- [ ] HVAC type: mini-split, ducted heat pump, ERV for ventilation?
-- [ ] Electrical service: 30A, 50A, or 100A shore power?
+- [ ] HVAC type beyond ERV: mini-split, ducted heat pump?
+- [ ] ERV model/capacity: which enthalpy wheel unit?
 - [ ] Where does mechanical equipment live? Under floor? Dedicated zone? Exterior-mounted?
+- [ ] Battery bank space reservation: how much floor volume?
 
 ### Transport
 - [ ] Trailer deck height above ground? (Determines remaining height budget for box)
 - [ ] Single or dual axle?
-- [ ] Tow vehicle class assumption: half-ton, three-quarter-ton, or one-ton truck?
+- [ ] Tow vehicle class assumption: 3/4-ton or 1-ton truck?
 - [ ] Tongue weight limits and weight distribution requirements
 
 ### Regulatory
-- [ ] ADA requirements for commercial use (Time Machine)?
-- [ ] Fire code egress for 6-10 occupancy?
-- [ ] Electrical code: is this classified as an RV, a trailer, or a commercial structure?
-- [ ] Which building code or standard governs? (IRC, IBC, ANSI A119.5 for park trailers?)
+- [ ] ADA requirements for commercial use?
+- [ ] Fire code egress for occupied commercial space?
+- [ ] Electrical code classification: RV, trailer, or commercial structure?
+- [ ] Which building code governs? (IRC, IBC, ANSI A119.5, NFPA 501C?)
 
 ### Business
-- [ ] Single chassis SKU for MVP? (Design to Time Machine spec, use for all configs)
-- [ ] Or tiered SKUs? (Base for ADU, enhanced for Time Machine)
-- [ ] Target unit cost for the chassis?
+- [ ] Which cartridge first? Content Node, Sanctuary, Sportsbook, or Lounge?
+- [ ] Target unit cost for chassis?
+- [ ] Target rental price point per cartridge?

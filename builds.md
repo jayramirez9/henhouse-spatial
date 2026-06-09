@@ -7,3 +7,48 @@
 - **Files**: CLAUDE.md, masterplan.md, implementation-plan.md, contracts/chassis-contract.md, configs/time-machine.md, tasks.md, builds.md, README.md, docs/forge-programming-system.md, package.json, .gitignore
 - **Eval**: All planning docs readable, chassis contract has clear sections referencing specific build numbers, Time Machine config validates against chassis interface, CLAUDE.md gives agent enough context to start B002 independently
 - **Status**: Complete
+
+## B001.1 — Vision rescope (E01-chassis-contract)
+- **Date**: 2026-03-30
+- **Epic**: E01-chassis-contract
+- **What**: Major rescope incorporating Gemini design conversation. Reframed from "ADU platform" to "mobile micro-venue fleet." Key decisions locked: 8'×13'×30' envelope, SIPs (not wood stud or VIP), ERV with enthalpy wheel, 50A shore power (future battery expansion), ISO corner castings for dual deployment modes. Renamed "fit-outs" to "cartridges." Replaced Time Machine/Living Unit/Office product lines with Content Node/Sanctuary/Pop-Up Sportsbook/Heavy-Air Lounge. Deferred: VIPs, battery bank, V2L, hydraulic gull-wing wall, series hybrid generator. Space and conduit reserved for future upgrades.
+- **Files**: masterplan.md, CLAUDE.md, implementation-plan.md, contracts/chassis-contract.md, tasks.md, builds.md, configs/content-node.md (new, replaces configs/time-machine.md)
+- **Eval**: All docs consistently use "cartridge" terminology, locked decisions documented in chassis contract, deferred items clearly marked with "designed-for" rationale, four cartridge product lines defined, build sequence updated
+- **Status**: Complete
+
+## B002 — Exterior envelope spec (E01-chassis-contract)
+- **Date**: 2026-03-30
+- **Epic**: E01-chassis-contract
+- **What**: Defined the transport-legal exterior envelope and trailer configuration. Height corrected from 13'0" to 13'6" (universal max — no state below this on Interstate). Height budget calculated for standard deck (26") and low-profile deck (20"), yielding 10'9"–11'3" interior clear height — exceeds the 9-10' target. Trailer config: gooseneck/5th-wheel, dual axle, steel frame, 14K GVWR, ISO corner castings. Weight budget roughed in: ~5,500 lbs empty frame, ~8,500 lbs payload capacity. CDL avoidance math documented (GCWR ≤26,000 lbs — tight, zero margin). Deployment modes A (trailer-locked) and B (crane-off) documented with operational details.
+- **Files**: contracts/chassis-contract.md, masterplan.md, CLAUDE.md, tasks.md, builds.md
+- **Eval**: Height budget produces two clear scenarios with real numbers. CDL risk flagged. Weight budget shows 8,500 lbs payload is tight — downstream builds must track component weights carefully. All height references consistent across docs.
+- **Flags**: CDL math has zero margin at 14K trailer + 12K truck = 26K exactly. Needs verification against specific truck GVWR ratings. Payload budget (8,500 lbs) is tight for a fully built-out venue — may need to revisit GVWR or consider aluminum frame if weight becomes the binding constraint.
+- **Status**: Complete
+
+## B003 — SIP wall assembly (E01-chassis-contract)
+- **Date**: 2026-06-09
+- **Epic**: E01-chassis-contract
+- **What**: Specified the SIP wall/roof/floor assembly with vendor-grade numbers (Premier SIPS technical data, cross-checked vs FischerSIPS/Insulspan). Core: **GPS (graphite EPS)** chosen over EPS/polyiso — ~22% more R per inch at same thickness/weight/width, no cold-weather R-drift. Skins: **7/16" OSB** for unit #1 (FRP flagged as upgrade). Thickness logic: walls trade against width (scarce) → **6½" GPS = R-28, interior ~6'9" as-built / 6'8" design target**; roof/floor trade against height (surplus) → **roof 8¼" GPS = R-36, floor 6½" = R-23**. Refined B002 height budget (SIP floor/roof thicker than B002 placeholders → interior clear height now ~10'1"–10'7", still meets target).
+- **Files**: contracts/chassis-contract.md (wall assembly, locked decisions, height budget, weight budget), configs/content-node.md (width budget validated), tasks.md, builds.md
+- **Eval**: Each core/skin/thickness option has R-value, weight, width impact, and cost. Recommendation is justified against the binding width constraint. Numbers sourced from manufacturer data, not assumed. Content Node width budget updated to the validated figure.
+- **Flags**: **⚠️ WEIGHT FINDING — likely the project's binding constraint.** First real envelope weight (~6,400 lbs SIP shell+floor+cladding) + ~5,500 lb steel trailer = ~11,900 lbs before any systems, leaving only ~2,100 lbs under a 14K no-CDL GVWR for HVAC/ERV/electrical + the entire cartridge. **Content Node almost certainly cannot fit no-CDL on a 14K steel-frame trailer.** Levers: aluminum frame (−1,500–2,000 lbs), FRP SIP skins (−850–1,250 lbs; note thinner cores do NOT help — weight is skin-driven), or accept CDL/higher GVWR. Recommended: aluminum frame + FRP skins to preserve no-CDL even for Content Node. **Strategic cost-vs-CDL fork — needs Jay's decision before B005 (HVAC sizing) and B006 (electrical).**
+- **Decision (2026-06-09)**: Shell baseline stays **SIP** (Jay confirmed). "Build like a car" / aluminum-monocoque idea evaluated and rejected for thermal bridging + acoustic-drum reasons; composite-sandwich monocoque (expedition-vehicle style = the FRP-skin lever productized) noted as the documented weight-recovery path if payload forces it. Jay's real driver was *quietness* (Taycan cabin) — recorded as the acoustic benchmark for B010 ("sealed premium-car-cabin quiet").
+- **Status**: Complete
+
+## B004 — Structural grid (E01-chassis-contract)
+- **Date**: 2026-06-09
+- **Epic**: E01-chassis-contract
+- **What**: Defined the structural grid from Premier SIPS load charts (ICC-ES ESR-4524, IBC/IRC compliant). **Key finding: the SIP shell is grossly over-strong (~17× axial margin) — the real engineering problem is local mounting, not gross structure.** Foam core holds no fasteners and 7/16" OSB skin has low withdrawal, so heavy cartridge loads (LED, camera grid) must land on embedded lumber. Specified: panel/seam layout (large panels, fewer seams) with spline type as a design lever (Type S connection-only/no-bridge default; **Type L lumber splines placed deliberately at LED-rail and camera-grid lines as mounting backers**; Type I for roof). Three load paths — gravity (roof→walls 3,373 plf cap vs ~190 plf demand→floor→deck→frame), Mode B crane-lift (needs integral steel sub-frame for ISO castings), and road-dynamic (2-3g, fatigue — outside chart scope, prototype required). Mounting grid as cartridge interface: walls ≥10 psf hung via embedded ledgers, ceiling ≥250 lb hard points, floor ≥100 psf assembly (steel deck is the real structural floor).
+- **Files**: contracts/chassis-contract.md (structural grid section, replaces placeholder), configs/content-node.md (LED mounting → hard points, not bare skin), tasks.md, builds.md
+- **Eval**: Each surface (wall/ceiling/floor) has a mounting method + capacity grounded in manufacturer load data. Spline-type selection mapped to thermal-vs-structural tradeoff. Load paths cover both deployment modes + the non-standard transport case. Content Node LED mounting updated to require chassis hard points.
+- **Flags**: **Mode B (crane-off) adds steel sub-frame weight** — conflicts with the B003 weight finding; question whether Mode B earns its weight for unit #1 or gets deferred like the battery bank. **Road-dynamic/fatigue loading is outside the SIP manufacturer's static chart scope** — seams and mounts need a transport factor and must be prototyped/instrumented before fleet production.
+- **Status**: Complete
+
+## D001 — Weight Strategy decision (E01-chassis-contract)
+- **Date**: 2026-06-09
+- **Type**: Decision record (revises B002/B003/B004 outputs — not a new build)
+- **Decision**: **Universal no-CDL, fleet-wide, via aluminum frame + FRP skins.** Resolves the B003 weight finding. Jay chose to spend (~+$20–35K/unit) to keep every cartridge — including the heavy Content Node — under the 14K no-CDL ceiling, so any licensed driver can tow any unit.
+- **Weight math**: steel+OSB left only ~1,500 lbs for the Content Node cartridge (infeasible). Aluminum frame (−~1,750 lbs) + FRP skins (−~1,580 lbs) + FRP gel-coat eliminating separate cladding (−~700 lbs) cut the chassis to ~8,250 lbs, leaving **~5,750 lbs cartridge allowance**. Content Node (~3,000–5,000 lbs) now fits with ~750–2,750 lbs margin. Mode B (crane-off) retained — freed budget covers the aluminum lift sub-frame.
+- **Files**: contracts/chassis-contract.md (locked decisions +frame/towing rows, trailer frame, wall-assembly skin → FRP, weight budget recomputed, Weight Strategy RESOLVED block, CDL section, B004 FRP caveat), memory.
+- **Consequences to honor**: (1) B004 structural plf/psf are OSB-based (ESR-4524) — restate from FRP-panel supplier ratings; mounting method (embedded backing) unchanged. (2) FRP needs an interior thermal/ignition barrier for occupied commercial use — open regulatory item. (3) Less shell acoustic mass → more interior acoustic mass for Content Node (B010), covered by the freed allowance. (4) Separate open item: CDL keys off *rated* GVWRs — non-CDL still requires a tow vehicle with GVWR ≤ ~12,000 lbs (truck choice, not the build, becomes the binding constraint).
+- **Status**: Decided

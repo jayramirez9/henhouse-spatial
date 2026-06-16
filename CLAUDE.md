@@ -57,11 +57,11 @@ docs/                # Reference documents, methodology, research
 - When a constraint changes, check ALL cartridge configs for impact
 
 ### Dimensional Constants
-These are the binding constraints from DOT road-legal towable transport (no CDL, no oversize permit):
-- **Exterior width**: 8'0" (2438mm)
+These are the binding constraints from road-legal towable transport (no CDL):
+- **Exterior width**: 8'6" (102" / 2591mm) — Georgia statewide legal max, no oversize permit for GA-local delivery (D002, 2026-06-16; was 8'0"/2438mm). 12'-lane caveat on narrow final approaches.
 - **Exterior height**: 13'6" (4115mm) including trailer deck
 - **Length**: 30' (9144mm)
-- **Interior clear width**: ~6'8" (2032mm) after SIP wall assembly
+- **Interior clear width**: ~7'3" (2210mm) as-built, **7'2" (2184mm) design target** after 6½" GPS SIP wall assembly (D002; was ~6'8")
 - Interior clear width is THE binding spatial constraint for all cartridges
 
 ## Architecture Context

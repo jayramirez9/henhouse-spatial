@@ -77,15 +77,15 @@ This is the spatial equivalent of an API. The chassis is the platform. The cartr
 
 ## Binding Constraints
 
-### Transport (DOT Road-Legal, Pickup-Towable, No CDL)
-- **Exterior width**: 8'0" (2438mm) — no oversize permit required
+### Transport (Road-Legal, Pickup-Towable, No CDL)
+- **Exterior width**: 8'6" (102" / 2591mm) — Georgia statewide legal max, no oversize permit for GA-local delivery (D002; was 8'0"). 12'-lane caveat on narrow final approaches.
 - **Exterior height**: 13'6" (4115mm) including trailer deck height — universal max, no state below this
 - **Length**: 30' (9144mm)
 - **Tow class**: Heavy-duty pickup or high-torque EV, no CDL required
 - **Max tow weight**: ~14,000 lbs [ASSUMED — needs validation against specific truck + trailer ratings]
 
 ### Interior Clear Width
-After SIP wall assembly (structure + insulation + interior surface), the usable interior width is approximately **6'8" (2032mm)**. This is THE binding spatial constraint for all cartridges. It determines:
+After SIP wall assembly (structure + insulation + interior surface), the usable interior width is approximately **7'2" (2184mm) design target / 7'3" (2210mm) as-built** at the D002 102" exterior (was ~6'8" at 8'0"). This is THE binding spatial constraint for all cartridges. It determines:
 - How many people can stand side-by-side
 - Whether standard fixtures (appliances, furniture) fit
 - LED panel sizing for Content Node

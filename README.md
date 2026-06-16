@@ -41,8 +41,8 @@ CONTAINER OS (separate project) controls the chassis + fit-out systems
 
 ## Binding Constraints
 
-- **Exterior width**: 8'0" (DOT road-legal, pickup-towable)
-- **Interior clear width**: ~6'8" after wall assembly — THE binding spatial constraint
+- **Exterior width**: 8'6" / 102" (Georgia legal max, no permit — D002; pickup-towable)
+- **Interior clear width**: ~7'2" design / 7'3" as-built after wall assembly — THE binding spatial constraint
 - **Length**: 28'-30' practical max
 - **Performance**: Passive house grade
 

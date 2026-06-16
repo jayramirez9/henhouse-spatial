@@ -89,7 +89,7 @@ E01-chassis-contract
 
 E02-content-node-config
   B008 — Zone allocation: entry, studio/chamber, control, mechanical — dimensions and adjacency
-  B009 — LED panel layout: panel sizing, mounting spec, clearances, within 6'8" width
+  B009 — LED panel layout: panel sizing, mounting spec, clearances, within 7'2" width (D002)
   B010 — Acoustic treatment spec: room-within-a-room decoupling, isolation requirements, thickness impact
   B011 — Electrical and thermal load calc: LED + compute + audio + audience heat
   B012 — Experience/studio layout options: broadcast, immersive, hybrid — dimensional validation

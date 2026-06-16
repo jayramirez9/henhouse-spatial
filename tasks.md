@@ -7,13 +7,15 @@
 **Key context for B006** (read `contracts/chassis-contract.md` HVAC + electrical sections first):
 - **🔑 B005 surfaced a binding cross-constraint the electrical spec must honor: the 50A service is the governor on the studio's thermal output.** A 50A/240V service = **9,600 W continuous** (NEC 80%). HVAC compressor ~3,000 W + ERV ~150 W reserve ~3,150 W, leaving **~6,450 W continuous for the entire cartridge**. B006 must allocate the panel so HVAC/ERV draw is reserved *before* the cartridge circuits, and flag that 50A — not HVAC tonnage — caps how bright/loud Content Node can run. (B011 itemizes the cartridge against this.)
 - **Weight is the tracked binding budget.** D001: aluminum frame + FRP skins → **~5,750 lb cartridge allowance** at 14K no-CDL GVWR. HVAC+ERV firmed at **~280 lbs**; ~320 lbs budgeted for electrical (panel/wiring/conduit) — track B006 against it.
-- Chassis envelope locked: 6½" GPS-core FRP-skinned SIP walls (R-28), 8¼" roof, ~6'8" interior design width, ~10'1"–10'7" interior height.
+- Chassis envelope locked: **8'6" (102") exterior (D002)**, 6½" GPS-core FRP-skinned SIP walls (R-28), 8¼" roof, **~7'2" interior design width / 7'3" as-built**, ~10'1"–10'7" interior height.
 - Reserve panel space/conduit for the **future battery bank + V2L** (designed-for). Note in B006: if future power lifts the 9,600 W ceiling, both the studio load *and* the HVAC requirement rise together (B005).
 
-**Three open items parked** (not blocking, but resolve before fleet build):
+**Five open items parked** (not blocking, but resolve before fleet build):
 1. **Tow vehicle** — non-CDL needs a truck rated ≤~12,000 lb GVWR; many 1-tons exceed that. The truck choice, not the build, is the binding no-CDL constraint.
 2. **FRP fire rating** — interior thermal/ignition barrier required for occupied commercial use (regulatory check).
 3. **Condenser packaging** — 3-ton condenser rejects ~45,000 BTU/hr; must mount exterior (end wall/roof) or in a fully louvered bay, not a sealed mechanical room. Locks in B007.
+4. **12-foot-lane / final-approach validation (D002)** — 102" width is permit-free in GA but legal only on 12'-lane roads. **Make this a go/no-go route-clearance gate in the booking workflow — confirm the final approach to a venue *before* taking a deposit**, not a post-booking surprise. If the fleet expands beyond GA-local, re-check destination-state local-road width rules. Also: **confirm GA's 102"/§ 32-6-23 basis with the GDOT permit office** (currently [ASSUMED]).
+5. **102"-capable trailer (D002)** — the trailer frame *and* deck must be built to 102", not a stock 96" deck under a 102" box. Silent build trap; lock at trailer selection / B007.
 
 ---
 

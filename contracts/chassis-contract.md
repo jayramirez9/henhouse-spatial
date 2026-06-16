@@ -22,11 +22,11 @@ These decisions are made. They constrain everything downstream.
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| Exterior width | 8'0" (2438mm) | No oversize permit, any route, any time. Fleet logistics. |
+| Exterior width | **8'6" (102" / 2591mm)** | Georgia's statewide legal max — **no oversize permit** for GA-local delivery [ASSUMED — pending GDOT confirmation]. Buys +6" interior over 8'0" while keeping R-28 walls. Trades the universal "any state, any road" margin for the wider box; 12'-lane caveat on narrow final approaches. (D002, 2026-06-16) |
 | Exterior height | 13'6" (4115mm) | Universal max — no state below 13'6" on Interstate. Every inch counts for interior height. |
 | Length | 30' (9144mm) | Maximum volume within pickup-towable range |
 | Shell construction | SIPs | Structure + insulation in one. Good R-value, fast assembly, minimal thermal bridging. Proven supply chain. |
-| Insulation | GPS (graphite EPS) SIP core, **FRP skins** | VIPs deferred — cost prohibitive for unit #1. 6½" GPS walls = R-28 at the 6'8" width target; thicker roof/floor for more R. FRP skins (not OSB) chosen for weight — see Weight Strategy. (B003) |
+| Insulation | GPS (graphite EPS) SIP core, **FRP skins** | VIPs deferred — cost prohibitive for unit #1. 6½" GPS walls = R-28 at the 7'2" width target; thicker roof/floor for more R. FRP skins (not OSB) chosen for weight — see Weight Strategy. (B003) |
 | Ventilation | ERV with enthalpy wheel, ~150 cfm | Essential for sealed passive house box. 80% thermal energy recovery. Sized for 10-occupant CO2 control (not just code minimum). $2-5K, non-negotiable. (B005) |
 | Supplemental HVAC | 3-ton (36,000 BTU/hr) variable-capacity ducted mini-split heat pump | Cooling governs (LED/equipment heat); inverter mandatory for the empty-box→full-studio turndown. Cooling load is power-capped by the 50A service, which self-sizes this at 3 tons. (B005) |
 | Primary power | 50A shore power (120/240V split phase) | Covers all cartridge loads. Panel + conduit oversized for future battery expansion. |
@@ -40,9 +40,23 @@ These decisions are made. They constrain everything downstream.
 
 | Dimension | Value (imperial) | Value (metric) | Source / Notes |
 |-----------|-----------------|----------------|----------------|
-| Exterior width | 8'0" (96") | 2438mm | Federal no-permit max on all roads. Interstate allows 102" but local/state roads may not. 8'0" chosen for universal deployability. |
+| Exterior width | 8'6" (102") | 2591mm | Georgia's statewide legal max (O.C.G.A. § 32-6-23) — no oversize permit for GA-local delivery [ASSUMED — pending GDOT confirmation]. Was 8'0"/96" (universal federal no-permit) until D002 adopted 102" for +6" interior. See Regulatory: Transport Width below. |
 | Exterior height | 13'6" (162") | 4115mm | Universal maximum — de facto national standard. No state below 13'6" on Interstate. Height includes trailer deck + box. |
 | Length | 30'0" (360") | 9144mm | Practical max for pickup-towable. Standard gooseneck trailer territory. |
+
+### Regulatory: Transport Width (D002, 2026-06-16)
+
+**Working basis [ASSUMED — pending GDOT permit-office confirmation].** Georgia's statewide legal maximum vehicle/load width is **102 inches (8'6")** under **O.C.G.A. § 32-6-23** — on *all* public roads, not only Interstates (web-sourced, not yet confirmed with GDOT). On that basis, at or under 102" **no oversize/width permit is required** anywhere in Georgia, including local delivery in **Atlanta, Fayetteville, Peachtree City, and Newnan**; over 102" triggers an oversize permit (§ 32-6-28). **Confirm with the GDOT permit office before relying on this for a booked delivery.**
+
+**The one operational catch — the 12-foot-lane rule.** A 102"-wide vehicle may only travel on roads with **12-foot travel lanes**. Highways and arterials (I-75/85, US-29, GA-74/85/54/34) qualify; the risk is the **final approach** — residential streets, rural Coweta/Fayette connector roads, event-site driveways/lots that may have narrower lanes. This is a **per-venue route check**, not a statewide blocker.
+
+**Fine print.**
+- 102" is the *load* width; mirrors/safety devices are excluded, but trim, skins, or awnings that push the *box itself* past 102" tip into permit territory — **build to 102" with margin, not exactly 102".**
+- This is the GA statute as of 2026-06; for fleet ops, confirm with the **GDOT permit office** and check posted local bridge/lane restrictions per route. [ASSUMED — not re-verified per delivery]
+
+**Decision (D002).** Adopt **8'6" (102")** exterior width for the GA-metro fleet. The +6" of exterior goes straight to interior width (now ~7'3" as-built / 7'2" design vs. 6'9"/6'8" at 8'0"), **with walls unchanged at 6½" GPS SIP (R-28 retained)** — so the width win costs no thermal performance, unlike the alternative of thinning walls. The accepted trade is the **loss of the universal "any state, any road" margin** that 8'0"/96" gave: 102" is permit-free in Georgia and most states, but a few jurisdictions cap local roads at 96", so out-of-state delivery is no longer guaranteed permit-free. Justified by the Atlanta-south-metro local delivery model.
+
+**Open item.** Validate **12-foot-lane / final-approach clearance** for each booked venue before delivery. If the fleet later expands beyond GA-local, re-check destination-state local-road width rules.
 
 ### Height Budget
 
@@ -86,7 +100,7 @@ The height budget is the critical calculation: total allowed height minus traile
 | ERV unit | ~80 lbs (36 kg) | Enthalpy-wheel ERV, ~150 cfm. (B005) |
 | HVAC system | ~200 lbs (91 kg) | 3-ton inverter ducted mini-split: condenser ~140 + air handler ~60. Excludes duct/register weight (in finish/cartridge). (B005) |
 | Electrical system | TBD (~320 lbs budgeted) | (B006) |
-| **Envelope subtotal** | **~3,900 lbs** | FRP SIP shell + floor + finish/openings. **Before any mechanical/electrical systems.** |
+| **Envelope subtotal** | **~3,900 lbs** | FRP SIP shell + floor + finish/openings. **Before any mechanical/electrical systems.** [D002: 102" width adds ~90 lbs envelope (wider roof/floor/end walls) — within the cartridge allowance; fold into the subtotal at B007.] |
 | **Chassis subtotal** | **~8,250 lbs** (incl. ~600 lbs systems est.; HVAC+ERV now firm at ~280 lbs, electrical ~320 lbs budgeted) | Frame + envelope + ERV/HVAC/electrical (electrical firms up B006). |
 | **Cartridge allowance @ 14K** | **~5,750 lbs** | GVWR minus chassis. **Content Node (~3,000–5,000 lbs) fits with ~750–2,750 lbs margin.** |
 | | | |
@@ -165,10 +179,10 @@ Federal CDL required when GCWR exceeds 26,000 lbs **and** towed vehicle GVWR exc
                       ●─────────────────────●
                     axle                   axle
 
-                    ← 8'0" (2438mm) exterior width →
+                    ← 8'6" (2591mm) exterior width →
 
-    Interior clear: ~6'8" wide × ~10'9"-11'3" tall
-    (exact width depends on SIP thickness — B003)
+    Interior clear: ~7'3" wide × ~10'1"-10'7" tall
+    (width per B003 wall assembly + D002 102" exterior)
     (exact height depends on deck + assembly — lock with trailer selection)
 ```
 
@@ -211,17 +225,17 @@ Thickness trades **R-value against the dimension that is scarce for each surface
 - **Walls** trade against interior **width** (binding constraint) → keep thin, use GPS to recover R.
 - **Roof and floor** trade against interior **height**, where B002 shows a surplus (10'+ vs 9–10' target) → go thicker for R.
 
-Wall thickness options (assembly = SIP + 0.5" exterior cladding + 0.5" interior finish per side; ×2 off the 96" exterior):
+Wall thickness options (assembly = SIP + 0.5" exterior cladding + 0.5" interior finish per side; ×2 off the **102" exterior** (D002)):
 
 | Wall SIP | Nominal | R-value @75°F (EPS / **GPS**) | Weight | Per-side assembly | Interior clear width |
 |----------|---------|------------------------------|--------|-------------------|----------------------|
-| 4½" | 114mm | 15 / **18** | 3.3 psf | 5.5" (140mm) | 85" = **7'1"** (2159mm) |
-| **6½" [SELECTED]** | **165mm** | **23 / 28** | **3.5 psf** | **7.5" (191mm)** | **81" = 6'9" (2057mm)** |
-| 8¼" | 210mm | 30 / **36** | 3.7 psf | 9.25" (235mm) | 77.5" = **6'5.5"** (1969mm) |
+| 4½" | 114mm | 15 / **18** | 3.3 psf | 5.5" (140mm) | 91" = **7'7"** (2311mm) |
+| **6½" [SELECTED]** | **165mm** | **23 / 28** | **3.5 psf** | **7.5" (191mm)** | **87" = 7'3" (2210mm)** |
+| 8¼" | 210mm | 30 / **36** | 3.7 psf | 9.25" (235mm) | 83.5" = **6'11.5"** (2121mm) |
 
-**Decision**: 6½" GPS walls → **R-28**, interior clear width **~6'9" (2057mm)**. This recovers the original ~6'8" target *with a little margin*. Going to 8¼" walls (R-36) would cost ~3.5" of interior width — unacceptable for Content Node, which needs every inch for LED panels + acoustic treatment. Going to 4½" (R-18) buys 4" of width but sacrifices a third of the wall R-value; the GPS 6½" is the better balance.
+**Decision**: 6½" GPS walls → **R-28**, interior clear width **~7'3" (2210mm)** at the D002 102" exterior. This clears the original 6'8" target by ~7" — the width win comes from the wider exterior, *not* from thinning walls, so R-28 is retained. Going to 8¼" walls (R-36) still costs ~3.5" of interior width for marginal R; going to 4½" (R-18) sacrifices a third of the wall R-value for width Content Node no longer needs. The GPS 6½" remains the best balance.
 
-> **Design target stays 6'8" (2032mm).** As-built is ~6'9", but cartridges should design to 6'8" to absorb finish tolerances, fastener stand-off, and field variance. The extra inch is margin, not buildable space.
+> **Design target: 7'2" (86" / 2184mm).** As-built is ~7'3" (87"), but cartridges should design to 7'2" to absorb finish tolerances, fastener stand-off, and field variance. The extra inch is margin, not buildable space.
 
 **Roof**: 8¼" GPS SIP → **R-36**. Trades against height surplus. Can flex 6½"–10¼" (R-28 to R-45) to trade height-margin against roof R-value.
 **Floor**: 6½" SIP over the trailer deck → **R-23**. The steel deck provides structure; the SIP adds insulation and the interior walking surface. Underside is road-exposed, so floor R matters.
@@ -256,13 +270,13 @@ The FRP-skin + aluminum-frame choice (Weight Strategy) adds roughly **+$20–35K
 
 ### Width Budget
 ```
-Exterior width:                      8'0"   (96" / 2438mm)
+Exterior width:                      8'6"   (102" / 2591mm)  ← D002
 Minus exterior cladding (× 2):      -1.0"   (0.5" per side)
 Minus 6½" GPS SIP (× 2):           -13.0"
 Minus interior finish (× 2):        -1.0"   (0.5" per side)
 ═══════════════════════════════════════════════════════════
-Interior clear width (as-built):    81"    (6'9" / 2057mm)
-Cartridge design target:            80"    (6'8" / 2032mm)  ← design to this
+Interior clear width (as-built):    87"    (7'3" / 2210mm)
+Cartridge design target:            86"    (7'2" / 2184mm)  ← design to this
 ```
 
 ## Structural Grid (B004)
@@ -374,7 +388,7 @@ Passive-house envelope + internal gains make heating trivial. Empty-box conducti
 
 ### Zone Layout & Equipment Location
 
-- **Single thermal zone.** At ~187 sq ft the box doesn't justify multi-zone control; the chamber is the load and gets the conditioned air. Control room takes a small branch register for equipment cooling.
+- **Single thermal zone.** At ~200 sq ft the box doesn't justify multi-zone control; the chamber is the load and gets the conditioned air. Control room takes a small branch register for equipment cooling.
 - **Mechanical zone (~4', cartridge end).** Air handler, ERV, and (B006) electrical panel live here, acoustically isolated from the chamber. This zone *is* chassis-provided — Content Node's mechanical zone is this space. The condenser hangs on the exterior of this end.
 - **Open question (from Content Node B008):** whether mechanical shares the ~4' end with the control room to recover chamber length. HVAC equipment footprint (air handler + ERV + clearances) is the constraint on combining them — resolve in B008.
 
@@ -384,7 +398,7 @@ Passive-house envelope + internal gains make heating trivial. Empty-box conducti
 |---------|-----------|-------|
 | Supply | 2–3 high-sidewall/ceiling supply registers along the 16' chamber | Cold supply drops over equipment + occupants. **Low face velocity (<500 fpm)** to hold register noise down — see acoustic constraint. |
 | Return | 1–2 returns at the chamber end opposite supply | Promotes end-to-end sweep; filter at return. |
-| Recirc duct | ~1,200 cfm trunk, low-velocity (large cross-section) | **Depth penalty:** low-velocity ducting is bulky in a 6'8" box — competes with LED + acoustic depth at the ceiling/sidewall. Budget it against clear height/width. |
+| Recirc duct | ~1,200 cfm trunk, low-velocity (large cross-section) | **Depth penalty:** low-velocity ducting is bulky even in the wider 7'3" box — competes with LED + acoustic depth at the ceiling/sidewall. Budget it against clear height/width. |
 | ERV ducts | Independent fresh-supply + exhaust pair to/from occupied zone | Keep separable from recirc so ventilation runs without the compressor; interlock for CO2-driven boost. |
 
 > Exact register coordinates, CFM-per-register, and trunk routing are finalized in **B007 (cartridge interface)** once Content Node's LED/acoustic depth (B009/B010) fixes the available ceiling/sidewall envelope. B005 establishes capacity, equipment, and method.

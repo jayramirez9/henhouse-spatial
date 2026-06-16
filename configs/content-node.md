@@ -21,7 +21,7 @@ Total interior length: ~28' (after end wall SIP assembly)
 │  ~4'        │  ~16'                    │ ~4' │ ~4'│
 │  (1219mm)   │  (4877mm)               │     │    │
 └──────────────────────────────────────────────────┘
-  Interior width: ~6'8" (2032mm) throughout
+  Interior width: ~7'2" (2184mm) throughout  ← D002 (102" exterior)
 ```
 
 ### Entry / Transition Zone (~4')
@@ -32,8 +32,8 @@ Total interior length: ~28' (after end wall SIP assembly)
 
 ### Studio / Experience Chamber (~16')
 - **Purpose**: The primary space. LED walls for immersive content or broadcast backdrop, multi-camera ceiling grid, immersive audio.
-- **Floor area**: ~107 sq ft (9.9 m²) at 6'8" × 16'
-- **Audience density**: 10.7-17.8 sq ft per person (6-10 people)
+- **Floor area**: ~115 sq ft (10.7 m²) at 7'2" × 16' (D002)
+- **Audience density**: 11.5-19.2 sq ft per person (6-10 people)
 - **Requirements**: Total blackout capability, acoustic isolation (room-within-a-room), climate control, LED panels on both long walls.
 - **Systems needed**: LED panels (×2 walls), multi-camera ceiling grid, immersive audio (min 4-channel), climate (supply + return), emergency lighting, emergency exit.
 - **Chassis interface**: Multiple high-amperage circuits, structural mounting for LED panels on both long walls, ceiling grid mounting points, HVAC supply and return, ceiling mounting for audio and emergency systems.
@@ -63,12 +63,12 @@ Total interior length: ~28' (after end wall SIP assembly)
 ### Panel Sizing Constraints
 - Panel width (horizontal dimension mounted on wall): limited by chamber length
 - Panel height (vertical dimension): limited by interior clear height minus clearances
-- Panel depth (projection from wall): **critical** — every inch of panel depth subtracts from the 6'8" clear width
+- Panel depth (projection from wall): **critical** — every inch of panel depth subtracts from the 7'2" clear width (D002)
   - At 2" (50mm) panel depth × 2 walls = 4" (100mm) total lost width
-  - Remaining audience width: ~6'4" (1932mm)
+  - Remaining audience width: ~6'10" (2083mm)
   - At 4" (100mm) panel depth × 2 walls = 8" (200mm) total lost width
-  - Remaining audience width: ~6'0" (1832mm)
-- **Panel depth is a binding constraint.** Thin panels are not optional — they're required.
+  - Remaining audience width: ~6'6" (1981mm)
+- **Panel depth is still the constraint to watch, but D002's +6" interior gives real breathing room** — even at 4" panels + acoustic treatment, the ≥5'6" target now holds with margin.
 
 ### Mounting Requirements
 - Panel weight per sq ft: TBD
@@ -92,9 +92,9 @@ Total interior length: ~28' (after end wall SIP assembly)
 - **Combined panel + acoustic depth per wall is a critical dimension**
 
 ### Budget: Wall Thickness from Clear Width
-Starting interior width is now validated by the chassis contract (B003): 6½" GPS SIP walls yield **~6'9" (2057mm) as-built**, with **6'8" (2032mm) as the cartridge design target** (the extra inch is tolerance margin, not buildable space). Content Node builds against 6'8".
+Starting interior width is now validated by the chassis contract (B003 + D002): 6½" GPS SIP walls at the 102" exterior yield **~7'3" (2210mm) as-built**, with **7'2" (2184mm) as the cartridge design target** (the extra inch is tolerance margin, not buildable space). Content Node builds against 7'2".
 ```
-Starting interior width (design):  6'8"   (2032mm)  ← chassis B003
+Starting interior width (design):  7'2"   (2184mm)  ← chassis B003 + D002
 Minus acoustic treatment (×2):     -TBD"
 Minus LED panel depth (×2):        -TBD"
 Minus any air gap / mounting (×2): -TBD"

@@ -1,16 +1,19 @@
 # Current Tasks
 
-## ▶ Resume Here (last updated 2026-06-09)
+## ▶ Resume Here (last updated 2026-06-16)
 
-**Next build: B005 — HVAC + ERV sizing.** B001–B004 + decision D001 are done and committed (`f3f34b3`).
+**Next build: B006 — Electrical system spec.** B001–B005 + decision D001 are done. B005 (HVAC + ERV) just landed.
 
-**Key context for B005/B006** (read `contracts/chassis-contract.md` first):
-- **Weight is the tracked binding budget.** D001 resolved the weight fork: aluminum frame + FRP skins → **~5,750 lb cartridge allowance** at 14K no-CDL GVWR. HVAC (B005) and electrical (B006) equipment weights draw down this allowance — track them.
-- Chassis envelope is locked: 6½" GPS-core FRP-skinned SIP walls (R-28), 8¼" roof, ~6'8" interior design width, ~10'1"–10'7" interior height.
+**Key context for B006** (read `contracts/chassis-contract.md` HVAC + electrical sections first):
+- **🔑 B005 surfaced a binding cross-constraint the electrical spec must honor: the 50A service is the governor on the studio's thermal output.** A 50A/240V service = **9,600 W continuous** (NEC 80%). HVAC compressor ~3,000 W + ERV ~150 W reserve ~3,150 W, leaving **~6,450 W continuous for the entire cartridge**. B006 must allocate the panel so HVAC/ERV draw is reserved *before* the cartridge circuits, and flag that 50A — not HVAC tonnage — caps how bright/loud Content Node can run. (B011 itemizes the cartridge against this.)
+- **Weight is the tracked binding budget.** D001: aluminum frame + FRP skins → **~5,750 lb cartridge allowance** at 14K no-CDL GVWR. HVAC+ERV firmed at **~280 lbs**; ~320 lbs budgeted for electrical (panel/wiring/conduit) — track B006 against it.
+- Chassis envelope locked: 6½" GPS-core FRP-skinned SIP walls (R-28), 8¼" roof, ~6'8" interior design width, ~10'1"–10'7" interior height.
+- Reserve panel space/conduit for the **future battery bank + V2L** (designed-for). Note in B006: if future power lifts the 9,600 W ceiling, both the studio load *and* the HVAC requirement rise together (B005).
 
-**Two open items parked** (not blocking, but resolve before fleet build):
-1. **Tow vehicle** — non-CDL now needs a truck rated ≤~12,000 lb GVWR; many 1-tons exceed that. The truck choice, not the build, is the binding no-CDL constraint.
+**Three open items parked** (not blocking, but resolve before fleet build):
+1. **Tow vehicle** — non-CDL needs a truck rated ≤~12,000 lb GVWR; many 1-tons exceed that. The truck choice, not the build, is the binding no-CDL constraint.
 2. **FRP fire rating** — interior thermal/ignition barrier required for occupied commercial use (regulatory check).
+3. **Condenser packaging** — 3-ton condenser rejects ~45,000 BTU/hr; must mount exterior (end wall/roof) or in a fully louvered bay, not a sealed mechanical room. Locks in B007.
 
 ---
 
@@ -20,7 +23,7 @@
 - [x] **B002** — Exterior envelope spec: transport-legal dimensions (8'×13'6"×30'), trailer config (gooseneck, dual axle, steel frame, 14K GVWR), height budget (standard vs low-profile deck), weight budget, CDL math, deployment modes. Output: `contracts/chassis-contract.md` exterior envelope section.
 - [x] **B003** — SIP wall assembly: research SIP options (core material, thickness, skins). For each: total thickness, R-value, weight per linear foot, interior width impact, cost estimate. Output: updated `contracts/chassis-contract.md` wall assembly section.
 - [x] **B004** — Structural grid: define SIP panel joint layout, load paths, wall/ceiling/floor mounting point locations and capacities. Must support Content Node LED panel weight and camera grid. Output: updated `contracts/chassis-contract.md` structural grid section.
-- [ ] **B005** — HVAC + ERV system spec: size ERV (enthalpy wheel) and supplemental HVAC for Content Node worst case. Calculate total thermal load, specify equipment, zone layout, duct routing, register locations. Output: updated `contracts/chassis-contract.md` HVAC section.
+- [x] **B005** — HVAC + ERV system spec: sized ERV (150 cfm enthalpy wheel) + 3-ton variable-capacity mini-split for Content Node worst case. **Key finding: cooling load is power-capped by the 50A service, not the envelope — the service governs tonnage.** Total cooling load ~29,200 BTU/hr (~2.4 tons), sized to 3 tons. HVAC+ERV ~280 lbs. Zone/duct/register method defined; coords deferred to B007. Output: `contracts/chassis-contract.md` HVAC section, `configs/content-node.md` thermal load.
 - [ ] **B006** — Electrical system spec: 50A shore power, main panel, circuit allocation. Must support Content Node electrical load. Reserve space/conduit for future LiFePO4 battery bank and V2L. Output: updated `contracts/chassis-contract.md` electrical section.
 - [ ] **B007** — Cartridge interface contract: compile the complete interface — clear volume, electrical connection points, HVAC registers, structural mounting grid, cable routing, entry points. Output: `contracts/cartridge-interface.md`, updated chassis contract.
 

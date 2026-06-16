@@ -1,6 +1,6 @@
 # Henhouse — Chassis Contract
 
-> **Status**: Draft — B002-B007 will flesh out each section
+> **Status**: Draft — B002–B005 complete; B006–B007 will flesh out the remaining sections
 
 ## Overview
 
@@ -27,7 +27,8 @@ These decisions are made. They constrain everything downstream.
 | Length | 30' (9144mm) | Maximum volume within pickup-towable range |
 | Shell construction | SIPs | Structure + insulation in one. Good R-value, fast assembly, minimal thermal bridging. Proven supply chain. |
 | Insulation | GPS (graphite EPS) SIP core, **FRP skins** | VIPs deferred — cost prohibitive for unit #1. 6½" GPS walls = R-28 at the 6'8" width target; thicker roof/floor for more R. FRP skins (not OSB) chosen for weight — see Weight Strategy. (B003) |
-| Ventilation | ERV with enthalpy wheel | Essential for sealed passive house box. 80% thermal energy recovery. $2-5K, non-negotiable. |
+| Ventilation | ERV with enthalpy wheel, ~150 cfm | Essential for sealed passive house box. 80% thermal energy recovery. Sized for 10-occupant CO2 control (not just code minimum). $2-5K, non-negotiable. (B005) |
+| Supplemental HVAC | 3-ton (36,000 BTU/hr) variable-capacity ducted mini-split heat pump | Cooling governs (LED/equipment heat); inverter mandatory for the empty-box→full-studio turndown. Cooling load is power-capped by the 50A service, which self-sizes this at 3 tons. (B005) |
 | Primary power | 50A shore power (120/240V split phase) | Covers all cartridge loads. Panel + conduit oversized for future battery expansion. |
 | Deployment | ISO corner castings on frame | Cheap to include. Enables Mode A (trailer-locked) and Mode B (crane-off for permanent drops). |
 | Frame material | **Aluminum** | Saves ~1,500–2,000 lbs vs steel — required to keep all cartridges (incl. Content Node) under the no-CDL ceiling. (Weight Strategy, 2026-06-09) |
@@ -82,11 +83,11 @@ The height budget is the critical calculation: total allowed height minus traile
 | SIP shell (walls + roof) | ~2,450 lbs (1111 kg) | 6½" GPS walls (~815 sq ft @ ~2.3 psf) + 8¼" GPS roof (240 sq ft @ ~2.4 psf), **FRP skins**. (B003 + Weight Strategy) |
 | Floor assembly | ~550 lbs (249 kg) | 6½" FRP-skinned SIP over trailer deck, 240 sq ft @ ~2.3 psf. |
 | Finish + openings | ~900 lbs (408 kg) [ASSUMED] | Entry door, any glazing, interior thermal/ignition barrier, sealing. **No separate exterior cladding — FRP gel-coat skin is the finished exterior.** Refine in B004/B007. |
-| ERV unit | TBD | (B005) |
-| HVAC system | TBD | (B005) |
-| Electrical system | TBD | (B006) |
+| ERV unit | ~80 lbs (36 kg) | Enthalpy-wheel ERV, ~150 cfm. (B005) |
+| HVAC system | ~200 lbs (91 kg) | 3-ton inverter ducted mini-split: condenser ~140 + air handler ~60. Excludes duct/register weight (in finish/cartridge). (B005) |
+| Electrical system | TBD (~320 lbs budgeted) | (B006) |
 | **Envelope subtotal** | **~3,900 lbs** | FRP SIP shell + floor + finish/openings. **Before any mechanical/electrical systems.** |
-| **Chassis subtotal** | **~8,250 lbs** (incl. ~600 lbs systems est.) | Frame + envelope + ERV/HVAC/electrical (firms up B005/B006). |
+| **Chassis subtotal** | **~8,250 lbs** (incl. ~600 lbs systems est.; HVAC+ERV now firm at ~280 lbs, electrical ~320 lbs budgeted) | Frame + envelope + ERV/HVAC/electrical (electrical firms up B006). |
 | **Cartridge allowance @ 14K** | **~5,750 lbs** | GVWR minus chassis. **Content Node (~3,000–5,000 lbs) fits with ~750–2,750 lbs margin.** |
 | | | |
 | **Trailer GVWR** | **14,000 lbs (no-CDL)** | Achievable for all cartridges including Content Node. (Weight Strategy) |
@@ -327,30 +328,74 @@ The chassis provides these **hard points**. Cartridges must mount weight only to
 
 > The mounting grid coordinates (exact ledger heights, ceiling hard-point spacing) are finalized in **B007 (cartridge interface)** once Content Node's LED and camera layouts are fixed (B009). B004 establishes the *method*: pre-planned embedded backing at mapped locations.
 
-## HVAC System (To Be Defined in B005)
+## HVAC System (B005)
 
-### Ventilation: ERV with Enthalpy Wheel (Locked)
-- Fresh air with ~80% thermal energy recovery
-- Required for sealed passive house operation
-- Maintains indoor air quality without sacrificing thermal performance
-- CO2 monitoring: yes (required for occupied commercial space)
+> **Headline finding (B005): cooling — not heating — governs, and the cooling load is bounded by the electrical service, not the envelope.** Content Node's heat is dominated by its LED/compute/audio load, and that load is physically capped by the 50A shore service. HVAC, the heat it must reject, and the power service are therefore **circularly coupled**: the AC + ERV draw from the same 9,600 W continuous budget the cartridge competes for. The 50A service is effectively the *governor* on how hot the studio can run — so a **3-ton (36,000 BTU/hr) variable-capacity heat pump + a 150 cfm enthalpy-wheel ERV** is the self-consistent sizing. A bigger AC would be starved of both load and power.
 
-### Sizing Basis: Content Node Worst Case
-- LED panel heat generation: TBD BTU/hr
-- Audience body heat (10 people): ~4,000 BTU/hr [ASSUMED — ~400 BTU/hr per person]
-- Compute hardware heat: TBD BTU/hr
-- Audio amplifier heat: TBD BTU/hr
-- **Total cooling load**: TBD BTU/hr
+### Design Conditions
+
+| Parameter | Value | Notes |
+|-----------|-------|-------|
+| Indoor design (cooling) | 72°F / 22°C, 45–55% RH | Broadcast comfort; RH band controls condensation on LED/camera gear |
+| Outdoor design (cooling) | 95°F db / 76°F wb (35°C / 24°C) | ASHRAE ~1% hot-climate point. Fleet tours hot markets — adjustable per deployment. [ASSUMED] |
+| Outdoor design (heating) | 20°F / −7°C | Heating is a non-problem (see below); hyper-heat unit covers colder. [ASSUMED] |
+| Sealed/dark chamber | No glazing, opaque FRP | No solar gain through openings; sol-air roof/wall gain only. No natural ventilation — mechanical is the *only* air path. |
+
+### Cooling Load — Content Node Worst Case (power-constrained)
+
+Almost all electrical power consumed inside the envelope becomes sensible heat (LED light, compute, audio amps all end up as heat in the room). So the in-envelope equipment heat **cannot exceed the service feeding it.** With NEC 80%-continuous derating, a 50A/240V service delivers **9,600 W continuous**; HVAC + ERV reserve ~3,150 W (~3,000 W compressor [ASSUMED — firm at unit selection] + 150 W ERV), so the cartridge equipment is capped at **~6,450 W (~22,000 BTU/hr)**.
+
+| Source | Load | Basis |
+|--------|------|-------|
+| Cartridge equipment (LED + compute + audio + lighting + control) | ~22,000 BTU/hr | ≤6,450 W continuous = 9,600 W service − ~3,150 W HVAC+ERV draw. **Power-capped, not LED-spec-capped.** Itemized in B011. |
+| Occupants (10 people) | ~4,500 BTU/hr | ~250 sensible + ~200 latent per person, light activity (ASHRAE) |
+| Ventilation (150 cfm fresh, post-ERV) | ~700 BTU/hr [ASSUMED] | Assumes ~80% total (sensible+latent) recovery at design wet-bulb — optimistic for a real wheel at 76°F wb; refine with selected ERV's rated effectiveness. |
+| Envelope conduction + sol-air solar | ~2,000 BTU/hr [ASSUMED] | Engineering estimate, not yet modeled (R-28 walls / R-36 roof / R-23 floor); the passive envelope makes this nearly negligible. Firm in B016 (PHPP/WUFI). |
+| **Total cooling load** | **~29,200 BTU/hr (~2.4 tons)** | **Self-consistent with the 50A power budget.** |
+| **Selected capacity** | **36,000 BTU/hr (3 tons)** | Margin for simultaneity, pull-down from a heat-soaked box, and degraded-condenser days. |
+
+> **The naive worst case is a trap.** Two long LED walls (~256 sq ft / 23.8 m²) at full-white ~600 W/m² would draw ~14,000 W and imply a ~4-ton load. **The 50A service cannot supply that** (it can't even power the LEDs and the 4-ton AC at once). The service governs; 3 tons is correct. *If* a future battery bank / V2L / generator lifts the power ceiling (designed-for, B006), the studio's heat output and the required HVAC rise **together** — revisit tonnage when that power arrives, not before.
+>
+> **Cross-constraint flag → B006 / B011.** This load math assumes the studio equipment lives within ~6,450 W continuous *after* HVAC + ERV. B006 must allocate the panel so HVAC + ERV reserve their draw before the cartridge, and B011 must itemize Content Node to fit the remainder. If B011 needs more equipment power than ~6,450 W continuous, the binding constraint is the **50A service**, not the HVAC.
+
+### Heating (secondary)
+
+Passive-house envelope + internal gains make heating trivial. Empty-box conduction loss at 20°F design (ΔT ~52°F) is only **~2,000 BTU/hr** — two orders below the cooling case. The heat pump covers pre-conditioning and unoccupied freeze protection; once occupied, internal gains heat the box. **Cooling sizes the equipment; heating capacity is free.**
+
+### Selected Equipment
+
+| Unit | Spec | Power | Weight | Notes |
+|------|------|-------|--------|-------|
+| **Supplemental HVAC** | Ducted **variable-capacity (inverter) mini-split heat pump**, 36,000 BTU/hr (3-ton), hyper-heat class | ~3,000 W cooling / ~3,500 W heating | ~200 lbs (91 kg) — outdoor condenser ~140 lbs + indoor air handler ~60 lbs | **Inverter is mandatory**, not optional: the load swings from a near-empty idling box to a full studio. A single-stage 3-ton would short-cycle and fail to dehumidify at part load. ~1,200 cfm recirc (~400 cfm/ton). |
+| **ERV** | **Enthalpy-wheel** ERV, ~150 cfm (70 L/s) nominal, ~80% total energy recovery | ~150 W | ~80 lbs (36 kg) | Sized for **CO2 control of 10 occupants** (~15 cfm/person), which exceeds ASHRAE 62.1 minimum (~86 cfm) — CO2, not code minimum, governs. Wheel recovers latent (humid-climate friendly). CO2 sensor required (occupied commercial). |
+| **HVAC + ERV subtotal** | | ~3,150 W operating | **~280 lbs (127 kg)** | Fits within the ~600 lb chassis systems estimate; leaves ~320 lbs for electrical (B006). |
+
+> **Condenser heat rejection is an exterior problem.** The 3-ton condenser dumps ~45,000 BTU/hr (cooling + compressor work) to outdoor air and **cannot reject into a sealed mechanical bay** — it mounts on the exterior (end wall or roof) with unobstructed airflow, or the mechanical bay gets large louvered intake/exhaust to outdoor air. Packaging location locks in B007. [ASSUMED — exterior end-wall mount]
+
+### Zone Layout & Equipment Location
+
+- **Single thermal zone.** At ~187 sq ft the box doesn't justify multi-zone control; the chamber is the load and gets the conditioned air. Control room takes a small branch register for equipment cooling.
+- **Mechanical zone (~4', cartridge end).** Air handler, ERV, and (B006) electrical panel live here, acoustically isolated from the chamber. This zone *is* chassis-provided — Content Node's mechanical zone is this space. The condenser hangs on the exterior of this end.
+- **Open question (from Content Node B008):** whether mechanical shares the ~4' end with the control room to recover chamber length. HVAC equipment footprint (air handler + ERV + clearances) is the constraint on combining them — resolve in B008.
+
+### Duct Routing & Register Locations (Cartridge Interface)
+
+| Element | Provision | Notes |
+|---------|-----------|-------|
+| Supply | 2–3 high-sidewall/ceiling supply registers along the 16' chamber | Cold supply drops over equipment + occupants. **Low face velocity (<500 fpm)** to hold register noise down — see acoustic constraint. |
+| Return | 1–2 returns at the chamber end opposite supply | Promotes end-to-end sweep; filter at return. |
+| Recirc duct | ~1,200 cfm trunk, low-velocity (large cross-section) | **Depth penalty:** low-velocity ducting is bulky in a 6'8" box — competes with LED + acoustic depth at the ceiling/sidewall. Budget it against clear height/width. |
+| ERV ducts | Independent fresh-supply + exhaust pair to/from occupied zone | Keep separable from recirc so ventilation runs without the compressor; interlock for CO2-driven boost. |
+
+> Exact register coordinates, CFM-per-register, and trunk routing are finalized in **B007 (cartridge interface)** once Content Node's LED/acoustic depth (B009/B010) fixes the available ceiling/sidewall envelope. B005 establishes capacity, equipment, and method.
+
+### Acoustic Constraint (→ B010)
+
+Mechanical noise must not bleed into the chamber — the "sealed premium-car-cabin quiet" benchmark (D001). **Target ≤ NC-25 in the chamber** during HVAC operation. [ASSUMED — broadcast-grade]. Levers: isolate equipment in the mechanical zone, **low duct/register face velocity** (drives larger ducts → the depth penalty above), lined/baffled ducts, and vibration-isolated condenser/air-handler mounts. The variable-capacity unit also helps — it idles at low fan speed at part load instead of cycling on/off. **This couples HVAC duct sizing to the acoustic and width/height budgets — carry into B010.**
 
 ### Special Consideration: Heavy-Air Lounge
-- Negative pressure operation requires higher air change rate
-- HEPA + activated carbon filtration is cartridge-provided, but chassis HVAC must support the airflow volume
-- Size ductwork to accommodate this even if Content Node is the thermal worst case
 
-### Zone Layout
-- TBD — dependent on whether zones are chassis-defined or cartridge-defined
-- Minimum: one supply register and one return per cartridge zone
-- HVAC register locations are part of the cartridge interface
+The Lounge runs **negative pressure** (exhaust > supply) at a higher air-change rate to clear cigar smoke, with cartridge-provided HEPA + activated-carbon filtration. Content Node is the *thermal* worst case, but the Lounge may be the *airflow* worst case. **Size chassis ductwork and the ERV exhaust path for the greater of (Content Node recirc airflow, Lounge ventilation airflow)** so the duct envelope reserved in B007 serves both. Quantify Lounge ACH in E10 (B-series TBD) and reconcile against the duct cross-sections reserved here. [ASSUMED — Lounge airflow not yet specified]
 
 ## Electrical System (To Be Defined in B006)
 

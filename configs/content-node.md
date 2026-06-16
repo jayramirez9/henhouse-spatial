@@ -120,9 +120,12 @@ Remaining audience clear width:     TBD
 
 ### Thermal Load
 - All electrical power eventually becomes heat
-- Additional: audience body heat (10 people × ~400 BTU/hr = 4,000 BTU/hr)
-- Chamber is sealed and dark — no solar gain, no natural ventilation
-- **Cooling is the dominant HVAC concern**, not heating (even in winter, internal heat generation likely exceeds losses in a passive house envelope)
+- Additional: audience body heat (10 people ≈ 4,500 BTU/hr — ~250 sensible + ~200 latent each, ASHRAE light activity)
+- Chamber is sealed and dark — no solar gain through openings, no natural ventilation
+- **Cooling is the dominant HVAC concern**, not heating (even in winter, internal heat generation exceeds losses in a passive house envelope)
+- **Validated against chassis B005**: chassis provides **3 tons (36,000 BTU/hr)** cooling + **150 cfm** enthalpy-wheel ERV. Worst-case Content Node cooling load ≈ **29,200 BTU/hr (~2.4 tons)** — fits with margin.
+
+> **⚠️ Binding cross-constraint — the 50A service caps the equipment load (chassis B005).** All studio equipment heat is rejected by the 3-ton AC, but the AC + ERV draw ~3,150 W from the *same* 50A/9,600 W-continuous service. After HVAC + ERV, **Content Node equipment (LED + compute + audio + lighting + control) must fit within ~6,450 W continuous** (~22,000 BTU/hr). The naive full-white LED draw (~14 kW) is physically unsupplied by the service — B011 must itemize the load to live within the power-and-thermal budget, or the LED walls must run dimmer/diverse. **The 50A service, not the HVAC tonnage, is the binding limit on studio brightness.** Reconcile in B011 and chassis B006.
 
 ## Studio / Experience Layout Options (To Be Defined in B012)
 

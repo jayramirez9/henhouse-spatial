@@ -54,8 +54,34 @@ Total interior length: ~28' (after end wall SIP assembly)
 
 ## LED Panel Layout (To Be Defined in B009)
 
+### Display Technology & Surface (explored 2026-06-16 — B009 will finalize)
+
+**Primary display surface: the back/end wall** (~7'2"–7'6" wide × 8' tall ≈ 60 sq ft / 5.6 m² wall opening; the 6-tile COB build below covers ~54 sq ft of it). Mounting the main display on the **end** wall is deliberate — its depth eats interior **length** (abundant, 16' chamber), not **width** (the scarce binding dimension). This reframes the original "flat panels on both long walls" wraparound concept: true COSM-style wraparound is **off the table** (16–38 kW and a 26'-wide surface can't exist in an 8'-wide, no-CDL, 50A box), so Content Node's realistic display is a **focal back wall**, not a surround. *Open for B009: whether the side long-walls also carry display or stay acoustic/neutral surfaces.*
+
+Two technology options, both validated to fit the chassis power/heat/weight budgets:
+
+| | **Option A — COB all-in-one DVLED** | **Option B — UST laser projection** |
+|---|---|---|
+| Example unit [vendor specs, unverified] | Panasonic TL-55LV12AW (3-in-1 COB, 1.26mm, 800 nits, 10,000:1, 156–172 W/tile, 40 lb/tile) | Hisense PX4-PRO (3,500 ANSI lm UST, dynamic iris, 6000:1, 1ms/VRR) |
+| Back-wall build | 6 tiles, 3×2 portrait → ~6.75'×8', ~1620×1920 (~2K) | Single UST + high-contrast screen |
+| **Power (operating)** | **~0.6–1.0 kW** (run dimmed in the dark box) | **~0.4 kW** |
+| **Heat to room** | ~3,400 BTU/hr | ~1,400 BTU/hr (ductable) |
+| **Weight** | ~300 lb (panels + structure) | ~80 lb |
+| **Cost (est.)** | ~$25–40k | ~$3–5k |
+| Blacks in dark room | **True (emissive)** | Gray (projector black on screen) |
+| Lights the talent | **Yes** | No |
+| Talent shadows | **None** | Yes (body blocks the throw) |
+| Fleet serviceability | **All-in-one swappable tiles, no field calibration** | Single unit |
+
+**Decision rule (2026-06-16):**
+- **COB is the primary bet** for the broadcast / virtual-production backdrop — it solves exactly what projection can't (true blacks, lights the subject, no shadows, fleet-serviceable). It is the default for any premium build.
+- **Projection is a budget-only fallback**, justified solely by its ~10× lower cost — and only for **audience-viewing** layouts where no camera is involved (so gray blacks / shadows / no subject-lighting don't matter).
+- **If the display budget exceeds ~$50k, commit to COB outright.** Projection's *only* advantage is cost; once you're spending at that tier the compromise isn't worth it. (Jay, 2026-06-16)
+
+**Power/heat is not the constraint here.** Either option is a rounding error against the chassis budget — ~0.4–1.0 kW vs the ~6,450 W cartridge allowance (B005), and ≤3,400 BTU/hr vs the 3-ton HVAC. The power/heat wall only ever existed at COSM wraparound scale, which a focal back wall avoids entirely. Mounting weight (~300 lb COB over its ~54 sq ft active area ≈ 5.5 psf) sits comfortably under B004's ≥10 psf wall provision — noting that provision is OSB-derived (ESR-4524) and pending FRP-supplier restatement (Weight Strategy), but the ~2× margin holds either way.
+
 ### Geometry
-- **Configuration**: Flat panels on both long interior walls of the studio/experience chamber
+- **Configuration**: Primary display on the **back/end wall** (see Display Technology above). Original "flat panels on both long interior walls" concept is under review for B009 — wraparound is infeasible; side walls may carry secondary display or stay acoustic/neutral.
 - **Wall available width**: ~16' (4877mm) per side (chamber length)
 - **Wall available height**: TBD (interior clear height, minus any baseboard/crown clearance)
 - **Panel mounting surface**: Interior face of SIP wall assembly (or acoustic decoupling layer)
@@ -108,7 +134,7 @@ Remaining audience clear width:     TBD
 ### Electrical Load Estimate
 | Component | Qty | Watts Each | Total Watts |
 |-----------|-----|-----------|-------------|
-| LED panels | TBD | TBD | TBD |
+| Back-wall display | 1 wall | — | **~600–1,000 W (COB) / ~400 W (projection)** — see Display Technology (B009) |
 | Compute hardware | TBD | TBD | TBD |
 | Audio amplifiers | TBD | TBD | TBD |
 | Streaming/broadcast console | 1 | TBD | TBD |

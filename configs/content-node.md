@@ -56,7 +56,7 @@ Total interior length: ~28' (after end wall SIP assembly)
 
 ### Display Technology & Surface (explored 2026-06-16 — B009 will finalize)
 
-**Primary display surface: the back/end wall** (~7'2"–7'6" wide × 8' tall ≈ 60 sq ft / 5.6 m² wall opening; the 6-tile COB build below covers ~54 sq ft of it). Mounting the main display on the **end** wall is deliberate — its depth eats interior **length** (abundant, 16' chamber), not **width** (the scarce binding dimension). This reframes the original "flat panels on both long walls" wraparound concept: true COSM-style wraparound is **off the table** (16–38 kW and a 26'-wide surface can't exist in an 8'-wide, no-CDL, 50A box), so Content Node's realistic display is a **focal back wall**, not a surround. *Open for B009: whether the side long-walls also carry display or stay acoustic/neutral surfaces.*
+**Primary display surface: the back/end wall** (~7'2"–7'6" wide × 8' tall ≈ 60 sq ft / 5.6 m² wall opening; the 6-tile COB build below covers ~54 sq ft of it). Mounting the main display on the **end** wall is deliberate — its depth eats interior **length** (abundant, 16' chamber), not **width** (the scarce binding dimension). This reframes the original "flat panels on both long walls" wraparound concept: true COSM-style wraparound is **off the table** (16–38 kW and a 26'-wide surface can't exist in an 8'-wide, no-CDL, 50A box), so Content Node's realistic display is a **focal back wall** — plus, for immersive installs, secondary **"window" displays on the long walls** (see below). *Resolved direction (2026-06-16, Jay): immersive / Time Machine installs add long-wall window displays; broadcast-only installs may leave the long walls acoustic/neutral.*
 
 Two technology options, both validated to fit the chassis power/heat/weight budgets:
 
@@ -80,8 +80,18 @@ Two technology options, both validated to fit the chassis power/heat/weight budg
 
 **Power/heat is not the constraint here.** Either option is a rounding error against the chassis budget — ~0.4–1.0 kW vs the ~6,450 W cartridge allowance (B005), and ≤3,400 BTU/hr vs the 3-ton HVAC. The power/heat wall only ever existed at COSM wraparound scale, which a focal back wall avoids entirely. Mounting weight (~300 lb COB over its ~54 sq ft active area ≈ 5.5 psf) sits comfortably under B004's ≥10 psf wall provision — noting that provision is OSB-derived (ESR-4524) and pending FRP-supplier restatement (Weight Strategy), but the ~2× margin holds either way.
 
+### Secondary "Window" Displays — Long Walls (immersive / Time Machine installs)
+
+For immersive installs, the long side-walls carry secondary displays that function as **virtual windows** onto the Time Machine environment (the period/weather/place scene), deepening immersion beyond the focal back wall. These serve the **immersive Theater / Corridor layouts (B012)** — not the broadcast backdrop. **Size and quantity: TBD (Jay, 2026-06-16)**; the levers below will size them.
+
+- **Width is the binding cost here — the opposite of the back wall.** The back wall's depth ate abundant *length*; long-wall windows protrude into the scarce ~7'2" clear *width*, and ×2 (both walls). The panel-depth budget above applies directly (2" → 6'10", 4" → 6'6"). **Keep them thin, or nest them.**
+- **Nest the window depth inside the acoustic/service wall buildout (B010), not protruding past it** — so the windows cost *no width beyond what acoustic treatment already spends*. This is the move that lets windows and clear-width coexist, and **the ≥5'6" clear-width margin above assumes nesting.** The thin surface-mount OLED (~1.5") fallback (if there's no cavity to nest into) sits *on top of* acoustic treatment and **re-opens the width budget** — re-derive ≥5'6" in B010 if the fallback is used.
+- **Power/heat fits, but stop treating displays as free.** Illustratively [size/qty TBD], ~4–4.5 m² of window display ≈ another ~0.8–1 kW → total display (back wall + windows) **~2 kW ≈ ⅓ of the ~6,450 W cartridge envelope (B005)** — *before* compute, audio, lighting, cameras, and Container OS. It's not "well under"; it's a third already spent. Reconcile against the full itemized load in B011 — the 50A service, not the display, is the binding cap.
+- **Acoustic tension → B010.** The long walls are *also* the prime candidates for room-within-a-room acoustic mass (the "Taycan-quiet" goal). A rigid glass display is reflective, low-mass, and a potential flanking/leak path — so the windows must be acoustically detailed (isolated mounts, mass-loaded backing, no through-wall penetration). **Reconcile windows-vs-isolation in B010.**
+- **Platform note.** The chassis provides the long-wall hard points, power, and interface; *populating* them with window displays is a Content Node immersive-cartridge choice, not a chassis feature — other cartridges (Sanctuary, Sportsbook, Lounge) need not.
+
 ### Geometry
-- **Configuration**: Primary display on the **back/end wall** (see Display Technology above). Original "flat panels on both long interior walls" concept is under review for B009 — wraparound is infeasible; side walls may carry secondary display or stay acoustic/neutral.
+- **Configuration**: Primary display on the **back/end wall** + secondary **"window" displays on the long walls** for immersive / Time Machine installs (see Display Technology above). Full-coverage wraparound on the long walls is infeasible; the long-wall displays are discrete windows, sized to nest within the acoustic buildout (B009/B010).
 - **Wall available width**: ~16' (4877mm) per side (chamber length)
 - **Wall available height**: TBD (interior clear height, minus any baseboard/crown clearance)
 - **Panel mounting surface**: Interior face of SIP wall assembly (or acoustic decoupling layer)
@@ -135,6 +145,7 @@ Remaining audience clear width:     TBD
 | Component | Qty | Watts Each | Total Watts |
 |-----------|-----|-----------|-------------|
 | Back-wall display | 1 wall | — | **~600–1,000 W (COB) / ~400 W (projection)** — see Display Technology (B009) |
+| Long-wall "window" displays (immersive installs) | TBD | — | **~800–1,000 W [ASSUMED — size/qty TBD]** — see Secondary "Window" Displays (B009/B010/B011) |
 | Compute hardware | TBD | TBD | TBD |
 | Audio amplifiers | TBD | TBD | TBD |
 | Streaming/broadcast console | 1 | TBD | TBD |

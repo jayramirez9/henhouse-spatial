@@ -152,8 +152,11 @@ Remaining audience clear width:     TBD
 | Camera system | TBD | TBD | TBD |
 | Experience lighting | TBD | TBD | TBD |
 | Container OS hardware | 1 | TBD | TBD |
-| HVAC + ERV (chassis-provided) | 1 | TBD | TBD |
-| **Total** | | | **TBD** |
+| HVAC + ERV (chassis-provided, **Tier 1 — reserved first**) | 1 | — | **~3,150 W** (HVAC ~3,000 + ERV ~150) — chassis B006 |
+| **Cartridge budget ceiling** | | | **~6,450 W continuous** = 9,600 W service − 3,150 W Tier 1 |
+| **Total (cartridge items, must fit ceiling)** | | | **TBD — B011 itemizes ≤ 6,450 W** |
+
+> **The cartridge load must fit ~6,450 W continuous (chassis B006 Tier 2).** Branch circuits at the chassis boundary are provisioned generously (10 circuits, ~13 kW of breaker capacity) for placement flexibility — but the *service* is capped at 9,600 W continuous, so the chassis EMS / Container OS sheds or dims Content Node load (convenience → spare → lighting → audio → display-dim) to protect HVAC + control. B011 itemizes every component against the ~6,450 W ceiling; the LED walls run dimmed/diverse by design.
 
 ### Thermal Load
 - All electrical power eventually becomes heat

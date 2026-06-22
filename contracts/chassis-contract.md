@@ -1,6 +1,6 @@
 # Henhouse — Chassis Contract
 
-> **Status**: Draft — B002–B005 complete; B006–B007 will flesh out the remaining sections
+> **Status**: Draft — B002–B006 complete; B007 will compile the cartridge interface
 
 ## Overview
 
@@ -26,10 +26,10 @@ These decisions are made. They constrain everything downstream.
 | Exterior height | 13'6" (4115mm) | Universal max — no state below 13'6" on Interstate. Every inch counts for interior height. |
 | Length | 30' (9144mm) | Maximum volume within pickup-towable range |
 | Shell construction | SIPs | Structure + insulation in one. Good R-value, fast assembly, minimal thermal bridging. Proven supply chain. |
-| Insulation | GPS (graphite EPS) SIP core, **FRP skins** | VIPs deferred — cost prohibitive for unit #1. 6½" GPS walls = R-28 at the 7'2" width target; thicker roof/floor for more R. FRP skins (not OSB) chosen for weight — see Weight Strategy. (B003) |
+| Insulation | GPS (graphite EPS) SIP core, **FRP skins** | VIPs deferred (see Wall Assembly → VIP note) — not just cost: the cooling load is power-capped, so envelope R barely binds. 6½" GPS walls = R-28 at the 7'2" width target; thicker roof/floor for more R. FRP skins (not OSB) chosen for weight — see Weight Strategy. (B003) |
 | Ventilation | ERV with enthalpy wheel, ~150 cfm | Essential for sealed passive house box. 80% thermal energy recovery. Sized for 10-occupant CO2 control (not just code minimum). $2-5K, non-negotiable. (B005) |
 | Supplemental HVAC | 3-ton (36,000 BTU/hr) variable-capacity ducted mini-split heat pump | Cooling governs (LED/equipment heat); inverter mandatory for the empty-box→full-studio turndown. Cooling load is power-capped by the 50A service, which self-sizes this at 3 tons. (B005) |
-| Primary power | 50A shore power (120/240V split phase) | Covers all cartridge loads. Panel + conduit oversized for future battery expansion. |
+| Primary power | 50A shore power (120/240V split phase) | **12,000 W nameplate / 9,600 W continuous** (NEC 80%). HVAC+ERV reserve ~3,150 W first → **~6,450 W continuous for the cartridge.** 100A busbar + EMS load-shed (HVAC/control protected) + reserved ATS/conduit for future battery/V2L. The service is a hard ceiling on studio brightness/volume. (B006) |
 | Deployment | ISO corner castings on frame | Cheap to include. Enables Mode A (trailer-locked) and Mode B (crane-off for permanent drops). |
 | Frame material | **Aluminum** | Saves ~1,500–2,000 lbs vs steel — required to keep all cartridges (incl. Content Node) under the no-CDL ceiling. (Weight Strategy, 2026-06-09) |
 | Towing class | **No-CDL, fleet-wide** | GCWR ≤26,000 lbs for every cartridge — any licensed driver tows any unit. Locked goal; drives the aluminum-frame + FRP-skin spend. (Weight Strategy, 2026-06-09) |
@@ -99,9 +99,9 @@ The height budget is the critical calculation: total allowed height minus traile
 | Finish + openings | ~900 lbs (408 kg) [ASSUMED] | Entry door, any glazing, interior thermal/ignition barrier, sealing. **No separate exterior cladding — FRP gel-coat skin is the finished exterior.** Refine in B004/B007. |
 | ERV unit | ~80 lbs (36 kg) | Enthalpy-wheel ERV, ~150 cfm. (B005) |
 | HVAC system | ~200 lbs (91 kg) | 3-ton inverter ducted mini-split: condenser ~140 + air handler ~60. Excludes duct/register weight (in finish/cartridge). (B005) |
-| Electrical system | TBD (~320 lbs budgeted) | (B006) |
+| Electrical system | ~300 lbs (136 kg) | Panel + EMS + wiring/conduit + shore inlet/cordset + reserved ATS/DC conduit. ~20 lbs under the 320 lbs budgeted. (B006) |
 | **Envelope subtotal** | **~3,900 lbs** | FRP SIP shell + floor + finish/openings. **Before any mechanical/electrical systems.** [D002: 102" width adds ~90 lbs envelope (wider roof/floor/end walls) — within the cartridge allowance; fold into the subtotal at B007.] |
-| **Chassis subtotal** | **~8,250 lbs** (incl. ~600 lbs systems est.; HVAC+ERV now firm at ~280 lbs, electrical ~320 lbs budgeted) | Frame + envelope + ERV/HVAC/electrical (electrical firms up B006). |
+| **Chassis subtotal** | **~8,250 lbs** (incl. ~580 lbs systems firm: HVAC+ERV ~280 lbs, electrical ~300 lbs) | Frame + envelope + ERV/HVAC/electrical. Systems now firm through B006; ~20 lbs under the ~600 lbs estimate. |
 | **Cartridge allowance @ 14K** | **~5,750 lbs** | GVWR minus chassis. **Content Node (~3,000–5,000 lbs) fits with ~750–2,750 lbs margin.** |
 | | | |
 | **Trailer GVWR** | **14,000 lbs (no-CDL)** | Achievable for all cartridges including Content Node. (Weight Strategy) |
@@ -213,7 +213,7 @@ All R-values, U-factors, and weights below are from Premier SIPS published techn
 | Steel-faced (IMP-style) | ~1.0–1.4 psf | Finished, durable exterior. Heavier than FRP; structural mounting differs. |
 | MgO board | heavier | Fireproof, mold-proof, but brittle under road vibration. |
 
-**Decision**: FRP skins, fleet-wide. Lighter, weatherproof, finished — directly serves the Weight Strategy decision (universal no-CDL).
+**Decision**: FRP skins, fleet-wide. Lighter, weatherproof, finished — directly serves the Weight Strategy decision (universal no-CDL). It's also the **road-durability** choice: an FRP-foam sandwich is the proven transport-body / expedition / marine construction (see B004 → Road-Dynamic Loads) — so source a **transport-grade** panel, not a building-grade SIP.
 > **Caveats introduced by FRP skins** (track into B004 and prototyping):
 > - **Structural data changes.** Premier's load charts (used in B004) are OSB-faced (ESR-4524). FRP-skinned SIP capacities differ and must come from the **FRP-panel supplier's own ratings** (transport-body / cold-storage / expedition-vehicle panel makers serve this market). The qualitative B004 conclusion (shell grossly over-strong; mounting is the real problem) almost certainly still holds, but the specific plf/psf numbers are OSB-based and need restating once a supplier is chosen.
 > - **Fire rating.** FRP needs a thermal/ignition barrier on the interior for occupied commercial use — verify against code (open regulatory question).
@@ -249,6 +249,18 @@ Wall thickness options (assembly = SIP + 0.5" exterior cladding + 0.5" interior 
 | Floor | 6½" SIP | R-23 | Adequate over a ventilated/road-exposed underside; verify against cold-floor comfort. |
 
 [ASSUMED] Passive-house *certification* is not yet energy-modeled — these R-values are envelope inputs, not a verified PH result. PHPP/WUFI modeling is a later build (E03 thermal calc, B016). The SIP envelope's value is continuous insulation and airtightness, not headline R alone.
+
+### Vacuum Insulation Panels (VIP) — evaluated, deferred (2026-06-21)
+
+Panasonic ADVANC-R VIP (~R-66 at 0.94" ≈ **R-70/inch** — ~16× GPS foam [ASSUMED — vendor center-of-panel; effective installed R runs lower at edges/seams and ages down as the vacuum degrades]; glass-wool core in a vacuum-sealed aluminum-laminate bag; FM/Intertek certified) was re-evaluated after the original B001.1 cost-based deferral. **The mechanism that makes it buildable for us:** encapsulate VIP inserts *inside the GPS foam core* (the foam is the protective sandwich, per Panasonic's between-protective-layers demo), tiled into the **non-structural field bays** and kept clear of the Type L lumber-spline mounting lines (B004) — so no fastener ever pierces a vacuum panel. This neutralizes the puncture / road-fragility objection.
+
+**Still deferred — it attacks a constraint we don't have:**
+- **Not R-constrained.** Content Node's cooling load is *power-capped* (B005): envelope conduction is only ~2,000 of ~29,200 BTU/hr (~7%). Going R-28 → R-50+ saves ~0.08 ton of 3 — negligible. VIP's one superpower (R per inch) aims at the wrong wall; the **50A service binds, not the envelope.** Same logic for off-grid kWh (equipment-dominated, not envelope-dominated).
+- **Not width-constrained.** D002 (102" exterior) already won the interior width — Content Node holds the ≥5'6" target with margin (conditional on B010 acoustic-nesting per `configs/content-node.md`; the 5'6" figure is itself [ASSUMED]). No need to buy width back with a thinner wall.
+- **Weight near-neutral/negative.** SIP weight is skin-driven, not core-driven (see below), so thinning the core saves ~nothing while the VIP laminate adds mass. [ASSUMED — not modeled]
+- **Semi-custom panel.** VIPs can't take the SIP co-press heat/pressure, so the core must be molded/cut around pre-made inserts — NRE + single-source risk. The original cost-prohibitive reason holds, now with a supply tail.
+
+**The one revisit trigger — the 96" reclaim play.** An encapsulated VIP-SIP wall is the only lever that yields a ~7'2" interior inside a *narrower 96" exterior* — buying back the universal "any state, any road" transport margin that D002 traded away. If the fleet expands past GA-local delivery and 102" becomes a liability, this is the card to play. Until then: GPS-core FRP-SIP stays.
 
 ### Weight per Linear Foot (Walls)
 
@@ -325,7 +337,12 @@ The road running gear (axles, hitch) stays for transport; the box is craned off,
 > **⚠️ Flag — Mode B costs weight.** An integral lift sub-frame + corner castings adds steel that lands in the [[Weight Finding]] budget. Given weight is the binding constraint, **question whether Mode B (crane-off) earns its weight penalty for unit #1**, or whether it's deferred like the battery bank. Quantify the sub-frame weight before committing. Connects to the no-CDL weight fork.
 
 **Road-dynamic loads (the non-standard case):**
-Towing imposes vibration, racking, and dynamic amplification (bumps ≈ 2–3g vertical) that static building codes don't address. The SIP shell is a stressed-skin **diaphragm** — inherently strong in racking/shear (Load Charts #4A/B), which is good. But **seams and mounting points see fatigue that a stationary building never does.**
+Towing imposes vibration, racking, and dynamic amplification (bumps ≈ 2–3g vertical [ASSUMED — not yet measured]) that static building codes don't address. **This is where SIP decisively beats stick frame for a unit that moves like a commercial trailer — not a move-once tiny home.** The enemy is *racking* and *fatigue at connections*, not gross strength:
+- **Stick frame is hundreds of discrete fastened connections** — every nail a fatigue site. Racking resistance comes from sheathing nailing that *loosens* under cyclic load, and hygroscopic wood shrinks/swells and works connections loose. This is why move-once tiny homes arrive with cracked corners and rattled-loose trim.
+- **A SIP is a stressed-skin sandwich — a monocoque, not an assembly.** The skin is bonded continuously across the whole face (diaphragm action, Load Charts #4A/B), distributing load instead of concentrating it at fasteners. Far fewer discrete joints = far fewer fatigue-initiation sites.
+- **Precedent settles it.** Reefer/box-truck bodies, expedition campers, high-end RV shells, and many marine hulls are FRP-skinned foam sandwich — the same family as our FRP-SIP — precisely because they survive continuous road duty. Our wall *is* transport-body construction, insulated to Passivhaus. (A second, independent reason the FRP-skin choice was right — see Weight Strategy.)
+
+> **The win is conditional — cash it in, don't assume it.** A sandwich panel's failure mode is **delamination** (skin peels from core → catastrophic stiffness loss), so the transport advantage holds *only* with a **transport-grade panel** (adhesive + skin qualified for road fatigue), **not a building-grade SIP** (Premier/Insulspan ESR-4524 panels are qualified for *static building* loads). Source from the transport-body / cold-storage / expedition FRP-panel suppliers (already the Weight-Strategy direction). And the fatigue concentrates at the **seams, mounting hardware, and box-to-frame connection** — not the panel field.
 > [ASSUMED] Design seams and all mounting hardware to a transport/fatigue factor, not just IBC static. This is outside the manufacturer's chart scope — **prototype and instrument before fleet production.**
 
 ### Mounting Grid (Cartridge Interface)
@@ -411,27 +428,104 @@ Mechanical noise must not bleed into the chamber — the "sealed premium-car-cab
 
 The Lounge runs **negative pressure** (exhaust > supply) at a higher air-change rate to clear cigar smoke, with cartridge-provided HEPA + activated-carbon filtration. Content Node is the *thermal* worst case, but the Lounge may be the *airflow* worst case. **Size chassis ductwork and the ERV exhaust path for the greater of (Content Node recirc airflow, Lounge ventilation airflow)** so the duct envelope reserved in B007 serves both. Quantify Lounge ACH in E10 (B-series TBD) and reconcile against the duct cross-sections reserved here. [ASSUMED — Lounge airflow not yet specified]
 
-## Electrical System (To Be Defined in B006)
+## Electrical System (B006)
 
-### Shore Power (Locked: 50A)
-- Connection: 50A (120/240V split phase)
-- Standard US RV/trailer park compatible
-- 12,000W continuous capacity
+> **Headline finding (B006): the 50A service is a hard power ceiling, and the panel's primary job is to *protect* it — reserve HVAC + ERV first, then ration the remainder to the cartridge.** A 50A/240V split-phase shore service delivers **12,000 W nameplate / 9,600 W continuous** (NEC 80%). HVAC + ERV reserve **~3,150 W** of that *before* any cartridge circuit energizes, leaving **~6,450 W continuous for the entire cartridge** (the B005 budget). Because Content Node can naively demand far more than that (a full-white LED wall alone is ~14 kW — B005), the electrical system **cannot rely on conservative breaker sizing alone**: branch breakers protect *wires*, not the *service*, so the sum of cartridge breakers is deliberately larger than 50A for placement flexibility. The service is instead protected by an **energy-management scheme that holds HVAC + ERV as a non-sheddable priority tier** and sheds/dims cartridge load before the 50A main trips. The panel busbar, conduit, and transfer-switch location are oversized *now* so a future battery / V2L can lift the ceiling — but per B005, **when the ceiling rises, the studio load *and* the required HVAC tonnage rise together.**
 
-### Future Battery Expansion (Designed-For)
-- Floor space reserved for LiFePO4 rack
-- Conduit oversized for battery interconnect
-- Transfer switch location reserved in panel
-- V2L inlet reserved (EV truck connection)
+### Service Definition
 
-### Distribution
-- Main panel: TBD amp rating (oversized for future battery)
-- Circuit count: TBD
-- Dedicated circuits for: HVAC, ERV, cartridge general, cartridge high-load, lighting, control systems
+| Parameter | Value | Notes |
+|-----------|-------|-------|
+| Shore connection | **50A, 120/240V split phase** (NEMA 14-50R / RV-style 50A inlet) | Standard US RV park / event shore power. Two 120V legs (L1, L2), 240V across both. |
+| Nameplate capacity | **12,000 W** (50A × 240V) | Both-legs-loaded ceiling, not a single aggregate trip threshold — the 2-pole main trips on >50A in *either pole*. |
+| **Continuous capacity** | **9,600 W** (NEC 80% derate) | The real working budget. All sizing below is against this number, **not** the 12,000 W nameplate. |
+| Per-leg continuous | ~4,800 W each (L1, L2) | Split-phase balance matters — a leg can trip at 50A while the other idles. Cartridge 120V circuits are distributed across legs; **final steady-state balance is reconciled in B011** once actual draw is itemized (HVAC is 240V, inherently balanced). |
+| Shore cordset | 50A RV cordset, 30–50 ft | Heavy (~1.5 lb/ft) — folded into the weight budget below. |
+
+### Load Budget — Priority Tiers
+
+The service is allocated top-down. Tier 1 reserves before Tier 2 sees any power.
+
+| Tier | Load | Continuous draw | Running budget |
+|------|------|-----------------|----------------|
+| **Tier 1 — Chassis life-support (non-sheddable)** | HVAC heat pump (compressor + air handler) | ~3,000 W [ASSUMED — firm at unit selection] | |
+| | ERV | ~150 W | |
+| | **Tier 1 subtotal (reserved first)** | **~3,150 W** | 9,600 − 3,150 |
+| **Tier 2 — Cartridge (managed)** | LED/display + compute + audio + lighting + control + convenience | **≤ 6,450 W continuous** | **= ~6,450 W remaining** |
+
+> **This is the binding cross-constraint carried from B005 and into B011.** ~6,450 W continuous (~22,000 BTU/hr of eventual heat) is the *entire* Content Node electrical envelope after the chassis takes its share. B011 must itemize every Content Node component to live within it. The naive full-white LED draw is physically unsuppliable — the LED walls run dimmed/diverse by design, not by accident.
+
+### Main Panel & Circuit Schedule
+
+**Main load center: 100A busbar, 50A main breaker.** The busbar is oversized to 100A (2× the present 50A main) so a future battery/V2L source can feed it through the transfer switch **without replacing the panel.** Present shore main is 50A.
+
+Circuits are **capacity provisions at the cartridge boundary**, not a promise that all may draw at once. Total branch-breaker capacity intentionally exceeds 50A — breakers size to protect their wire; the *service-level* draw is what the energy-management scheme caps at 9,600 W. The L1/L2 column shows **capacity placement, not balanced steady-state load** — the UPS-backed always-on cores (compute, control) are placed on opposite legs, but final leg balance is reconciled in **B011** against itemized draw.
+
+| # | Circuit | Breaker | Leg | Cont. cap | Tier / Notes |
+|---|---------|---------|-----|-----------|--------------|
+| 1 | HVAC heat pump | 30A / 240V 2-pole | L1+L2 | ~3,000 W op | **Tier 1.** Dedicated; MCA per selected inverter unit. |
+| 2 | ERV | 15A / 120V | L1 | ~150 W op | **Tier 1.** Runs independent of compressor (CO2 boost). |
+| 3 | Display / LED — A | 20A / 120V | L1 | 1,920 W | Tier 2. Back-wall COB or long-wall window bank. |
+| 4 | Display / LED — B | 20A / 120V | L2 | 1,920 W | Tier 2. Second display bank (immersive installs). |
+| 5 | Compute / broadcast rack | 20A / 120V | L2 | 1,920 W | Tier 2. UPS-backed (clean shutdown). |
+| 6 | Audio amplifiers | 20A / 120V | L1 | 1,920 W | Tier 2. |
+| 7 | Experience lighting | 20A / 120V | L2 | 1,920 W | Tier 2. Dimmable; entry/transition lighting branches here. |
+| 8 | Control / Container OS / network | 15A / 120V | L1 | 1,440 W | Tier 2. **UPS-backed, isolated** — never sheds. |
+| 9 | General convenience + service | 20A / 120V | L2 | 1,920 W | Tier 2. GFCI. First to shed. |
+| 10 | Spare (future cartridge) | 20A / 120V | L1 | — | Tier 2. Capped/landed for the next cartridge variant. |
+
+### Energy Management (the service-protection scheme)
+
+Because Tier 2 breaker capacity (~13 kW) far exceeds the ~6,450 W actually available, **something must prevent a full studio from tripping the 50A main.** Spec a **shore-power energy-management system (EMS)** — RV/marine-class automatic load management — with this priority logic:
+
+1. **HVAC + ERV are protected** (Tier 1) — never shed. Comfort and dehumidification hold even at peak.
+2. **Container OS / control (circuit 8) is protected** — the venue must not lose its brain.
+3. **Remaining Tier 2 circuits shed in reverse priority** (convenience → spare → lighting → audio → displays-dim) to keep total draw ≤ 9,600 W continuous / ≤ 50A/leg instantaneous.
+
+> **Container OS is the natural load manager.** Per the system architecture, Container OS is the software control plane for physical venue systems — making power allocation a Container OS responsibility (dim the LED walls, throttle non-critical circuits) closes the loop the B005 thermal math depends on. The EMS hardware is the fail-safe backstop; Container OS is the intelligent layer. Defines a real protocol surface for the Container OS integration.
+
+### Future Battery / V2L Expansion (Designed-For)
+
+Unit #1 ships shore-only, but the panel is built so battery/V2L is a bolt-on, not a rebuild. Per the power-independence exploration (2026-06-16), off-grid is an **energy (kWh × weight)** problem, not the power (kW) problem the 50A service already solves — so what's reserved here is the *interface*, sized for the ranked paths (EV-truck V2L ≈ 9.6 kW best fit; onboard LiFePO4 for short events; solar = trickle only).
+
+| Reserved | Provision |
+|----------|-----------|
+| Transfer switch | **Automatic transfer switch (ATS) location** reserved between shore inlet and main, pre-wired landing. |
+| Busbar headroom | 100A busbar (above) accepts combined shore + battery/V2L without panel replacement. |
+| Battery bay | Floor/under-floor volume reserved in the mechanical zone for a **modular LiFePO4 rack** (~10 lb/kWh — weight, not space, caps capacity). |
+| V2L inlet | Second exterior inlet location reserved for **EV tow-vehicle V2L** (~9.6 kW — the truck *is* the power plant, best-fit path). |
+| Inverter/charger | Location reserved in the mechanical zone; **oversized DC conduit** run (or pull-string) between battery bay and inverter/panel. |
+| Bonding transition | An inverter is a **separately derived system** — when added, the system bonding jumper moves to the inverter. Anticipated in the ATS design now (see Grounding). |
+
+> **⚠️ B005 coupling — raising the ceiling is not free.** A battery/V2L lifts the 9,600 W continuous ceiling, but Content Node's heat output and therefore the required HVAC tonnage **rise with it** (B005's circular coupling). Reserved conduit/space buys *power*; spending it costs *cooling*. Re-size HVAC when the power actually arrives, not before.
+
+### Grounding & Bonding (mobile structure)
+
+| Item | Spec |
+|------|------|
+| Neutral–ground bond | **At the shore source (pedestal), not in the trailer panel.** The trailer load center is wired as a sub-panel — isolated neutral and ground bars (NEC Art. 551 mobile-structure practice). |
+| Equipment grounding | EGC bonds the **aluminum frame**, condenser, all metal enclosures, and the ATS to one ground reference. |
+| GFCI / AFCI | GFCI on receptacle/convenience circuits (occupied commercial, wet-adjacent exterior shore); AFCI per occupancy code. |
+| Battery transition | When the inverter (separately derived system) is added via the ATS, the **system bonding jumper moves to the inverter** — design the ATS landing for this now. |
+
+### Weight Budget (~320 lbs budgeted — B005 carryover)
+
+| Item | Weight | Notes |
+|------|--------|-------|
+| Load center + breakers + EMS module | ~45 lbs | 100A panel, 10 circuits, smart load-management module. |
+| Branch wiring + conduit | ~150 lbs [ASSUMED] | **Copper branch circuits; aluminum feeders for heavy main runs** (weight lever, consistent with the aluminum frame). |
+| Shore inlet + 50A cordset | ~35 lbs | Cordset dominates (~1.5 lb/ft). |
+| ATS landing + future DC conduit (empty) | ~30 lbs | Reserved/empty now; conduit + pull-strings only. |
+| Grounding, bonding, junctions, devices | ~40 lbs | Receptacles, boxes, EGC, bonding hardware. |
+| **Electrical subtotal** | **~300 lbs** | **~20 lbs under the 320 lbs budgeted** — fold the firm number into the chassis subtotal at B007. |
+
+### Regulatory / Code [ASSUMED — open item]
+
+A mobile commercial venue straddles two electrical regimes: **NEC Art. 551** (RV / shore-power side, governs the inlet, cordset, and mobile-structure bonding) and **commercial occupancy electrical code** when deployed and occupied by the public. The inspection authority is unclear — state electrical board at build, or local AHJ at each venue? **This needs an electrical engineer's stamp and an AHJ determination before fleet production**, alongside the open FRP fire-rating and transport-width items. [ASSUMED — not yet confirmed]
 
 ### Connection Points (Cartridge Interface)
-- Location and rating of each available circuit at cartridge boundary
-- TBD — defined in B006 and formalized in B007
+
+Cartridge circuits land at a **labeled junction/sub-panel at the mechanical-zone boundary** — each circuit's physical location, breaker, voltage, and leg assignment per the schedule above. Exact coordinates are formalized in **B007 (cartridge interface)** once Content Node's zone layout (B008) fixes equipment positions. B006 establishes the service, the panel, the tiered budget, and the circuit method.
 
 ## Cartridge Interface (To Be Defined in B007)
 

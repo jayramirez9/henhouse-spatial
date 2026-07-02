@@ -1,8 +1,8 @@
-# CLAUDE.md — Henhouse Spatial
+# CLAUDE.md — Henhouse ADU
 
 ## Project Identity
 
-**Henhouse Spatial** is the parametric design and simulation environment for the Henhouse mobile micro-venue platform — a hyper-efficient, Passivhaus-level, towable box on a flatbed trailer. The unit is a **platform product**: a universal, climate-controlled shell that accepts different interior "cartridge" configurations. Content Node (broadcast studio / immersive LED venue) is the most demanding cartridge. Sanctuary (luxury green room) is the simplest.
+**Henhouse ADU** (formerly Henhouse Spatial) is the parametric design and simulation environment for the Henhouse mobile micro-venue platform — a hyper-efficient, Passivhaus-level, towable box on a flatbed trailer. The unit is a **platform product**: a universal, climate-controlled shell that accepts different interior "cartridge" configurations. Content Node (broadcast studio / immersive LED venue) is the most demanding cartridge. Sanctuary (luxury green room) is the simplest.
 
 This project models the chassis envelope, validates cartridge configurations against structural and spatial constraints, and simulates the physical systems that Container OS will control.
 
@@ -69,12 +69,16 @@ These are the binding constraints from road-legal towable transport (no CDL):
 This project sits alongside two other Henhouse products:
 
 ```
-henhouse-spatial     ◄── THIS PROJECT — physical platform design + simulation
+henhouse-adu         ◄── THIS PROJECT — physical platform design + simulation
 henhouse-container-os    — software control plane for deployed venues
 time-machine             — immersive experience software (consumed by Content Node cartridge)
 ```
 
 The spatial simulation informs Container OS by defining what physical systems exist and what the OS needs to control. Container OS protocol commands map to physical subsystems modeled here.
+
+### Time Machine Cross-Reference
+
+The ADU (Content Node fit-out) is Time Machine's **"first room"** — the physical venue its PRD-defined MVP requires. Read `docs/time-machine-crossref.md` for the full map: which Time Machine docs matter here (hardware spec, year-1 review, PRD window/speaker/topology sections) and which open decisions this project owns (window layout, speaker topology, workstation power/thermal). Time Machine lives at `../time-machine` in the monorepo.
 
 ## Rules for AI Collaboration
 

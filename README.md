@@ -1,4 +1,4 @@
-# Henhouse Spatial
+# Henhouse ADU
 
 Parametric design and simulation environment for the Henhouse ADU platform — a deployable, towable, passive-house-grade structure on a trailer chassis.
 

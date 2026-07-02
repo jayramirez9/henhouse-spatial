@@ -1,4 +1,4 @@
-# Henhouse Spatial — Implementation Plan
+# Henhouse ADU — Implementation Plan
 
 ## Current Phase: Phase 0/1 — Discovery + Architecture
 

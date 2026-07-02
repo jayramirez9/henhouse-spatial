@@ -1,8 +1,8 @@
-# Henhouse Spatial — Masterplan
+# Henhouse ADU — Masterplan
 
 ## What This Is
 
-Henhouse Spatial is the parametric design and simulation environment for the Henhouse mobile micro-venue platform. It models the physical chassis, validates fit-out configurations ("cartridges"), and simulates the building systems that Container OS will control in deployed venues.
+Henhouse ADU is the parametric design and simulation environment for the Henhouse mobile micro-venue platform. It models the physical chassis, validates fit-out configurations ("cartridges"), and simulates the building systems that Container OS will control in deployed venues.
 
 The core insight: **the unit is a platform, not a product.** It's a hyper-efficient, Passivhaus-level, towable box on a flatbed trailer. What goes inside — a broadcast studio, a luxury green room, a VIP event suite, a cigar lounge — is a cartridge. The chassis doesn't know or care what's inside it. It provides structure, climate, and power. The cartridge provides purpose.
 
